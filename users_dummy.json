@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "username": "josh722",
+    "email": "josh722@gmail.com",
+    "password": "test123",
+    "isGuest": false,
+    "playHistory": [
+      {
+        "quizType": "10 Question",
+        "score": 80,
+        "date": "2026-04-10"
+      },
+      {
+        "quizType": "Custom",
+        "score": 70,
+        "date": "2026-04-12"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "username": "amy1287",
+    "email": "amy1287@gmail.com",
+    "password": "hello456",
+    "isGuest": false,
+    "playHistory": [
+      {
+        "quizType": "10 Question",
+        "score": 90,
+        "date": "2026-04-14"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "username": "mike1202",
+    "email": "mike1202@berry.com",
+    "password": "quiz789",
+    "isGuest": false,
+    "playHistory": []
+  }
+]
