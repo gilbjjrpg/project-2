@@ -1,0 +1,22 @@
+:root {
+    --bg-color: (#f0f0f0);
+}
+
+html, body {
+    background: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+header h1 {
+
+}
+
+.login-container{
+    
+}
+
+/*
+Help
+*/
