@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", function () {
           playHistory: matchedUser.playHistory
         }));
 
-        window.location.href = "dashboard.html";
+        window.location.href = "dashboard.php";
       } else {
         showError("Invalid username/email or password.");
       }
@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", function () {
       playHistory: []
     }));
 
-    window.location.href = "dashboard.html";
+    window.location.href = "dashboard.php";
   });
 
   function showError(message) {
