@@ -8,8 +8,10 @@
     <body>
         <?php include 'header.php'; ?>
         <main>
-            <h2>Your Dashboard</h2>
+            <h1>Your Dashboard</h1>
+            <p>Welcome </p>
         </main>
+        <?php include 'footer.php'; ?>
 
     </body>
 

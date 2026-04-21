@@ -48,7 +48,7 @@ function setupLoginPage() {
     }
 
     try {
-      const response = await fetch("users_dummy.json");
+      const response = await fetch("../data/users_dummy.json");
       const users = await response.json();
 
       const matchedUser = users.find(function (user) {

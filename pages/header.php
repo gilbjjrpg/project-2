@@ -7,19 +7,19 @@
     <nav>
       <ul>
         <li class="selected">
-          <a href="dashboard.php">Dashboard</a>
+          <a href="../pages/dashboard.php">Dashboard</a>
         </li>
 
         <li class="button">
-          <a href="leaderboard.html">Leaderboard</a>
+          <a href="../pages/leaderboard.html">Leaderboard</a>
         </li>
 
         <li class="button">
-          <a href="quiz.html">Quiz!</a>
+          <a href="../pages/quiz.html">Quiz!</a>
         </li>
 
         <li class="button">
-          <a href="scores.html">Scores</a>
+          <a href="../pages/scores.html">Scores</a>
         </li>
       </ul>
     </nav>
