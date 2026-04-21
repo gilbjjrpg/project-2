@@ -1,5 +1,7 @@
 <?php
-<header>
-    <h1> Quizberry! </h1>
-</header>
+
 ?>
+
+<footer>
+  <p>Quizberry!</p>
+</footer>
