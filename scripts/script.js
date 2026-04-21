@@ -2,6 +2,22 @@ window.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginForm");
   const guestBtn = document.getElementById("guestBtn");
   const errorMessage = document.getElementById("errorMessage");
+  // Redirect protected pages to login if no user is stored
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+  const protectedPages = [
+    "dashboard.html",
+    "quizCustomize.html",
+    "quiz.html",
+    "scores.html",
+    "leaderboard.html"
+  ];
+
+  const currentPage = window.location.pathname.split("/").pop();
+
+if (protectedPages.includes(currentPage) && !currentUser) {
+  window.location.href = "login.html";
+}
 
   // Stop the rest of the file from breaking on pages
   // that do not have the login form
