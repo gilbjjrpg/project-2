@@ -1,8 +1,8 @@
 window.addEventListener("DOMContentLoaded", function() {
-    setupQuizPage();
+    setupQuizTimePage();
 });
 
-function setupQuizPage() {
+function setupQuizTimePage() {
     
 }
 

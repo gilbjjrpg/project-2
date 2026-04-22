@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+
+// ----> THIS IS THE LOGIN/REGISTER PAGE. DO NOT CHANGE. <----
+
+?>
+
 <head>
 
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">

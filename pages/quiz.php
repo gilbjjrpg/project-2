@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php 
+// This page is used ONLY for navigation.
+?>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
@@ -7,34 +12,18 @@
 
     <body>
         <header>
-            <div class="header-container">
-                <h1>Your Dashboard</h1>
-                <nav>
-
-                    <ul>
-                        <li class="button">
-                            <a href="../pages/dashboard.html">Dashboard</a>
-                        </li>
-
-                        <li class="button">
-                            <a href=../pages/leaderboard.html">Leaderboard</a>
-                        </li>
-
-                        <li class="selected">
-                            <a href="../pages/quiz.html">Quiz!</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
+            <?php include '../layout/header.php' ?>
         </header>
 
-    <main>
-        <p>
-            <a href=quizCustomize.html>Customize Quiz!</a>
-        </p>
-       
-    </main>
+        <main>
+            <h1>
+                Customize Quiz!
+            </h1>
+        </main>
+
+        <footer>
+            <?php include '../layout.footer.php' ?>
+        </footer>
 
     </body>
 

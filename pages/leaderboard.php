@@ -8,30 +8,20 @@
     <body>
         <header>
             <div class="header-container">
-                <h1>Your Dashboard</h1>
-                <nav>
-
-                    <ul>
-                        <li class="button">
-                            <a href="../pages/dashboard.php">Dashboard</a>
-                        </li>
-
-                        <li class="selected">
-                            <a href="../pages/leaderboard.php">Leaderboard</a>
-                        </li>
-
-                        <li class="button">
-                            <a href="../pages/quiz.php">Quiz!</a>
-                        </li>
-                    </ul>
-                </nav>
+                <?php include '../layout/header.php'; ?>
             </div>
-
         </header>
 
-    <main>
-       
-    </main>
+        <main>
+            <h1>Leaderboards</h1>
+            <p>This is the leaderboard!</p>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <?php include '../layout/footer.php'; ?>
+        </footer>
+
 
     </body>
 

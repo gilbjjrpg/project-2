@@ -1,5 +1,6 @@
 <?php
 
+// ----> THIS IS USED AS THE HEADER FOR ALL PAGES. CHANGE ONLY IF YOU NEED TO. <----
 ?>
 
 <header>
@@ -7,7 +8,7 @@
     <h1>Quizberry! </h1>
     <nav>
       <ul>
-        <li class="selected">
+        <li class="button">
           <a href="../pages/dashboard.php">Dashboard</a>
         </li>
 

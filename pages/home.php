@@ -8,34 +8,21 @@
     <body>
         <header>
             <div class="header-container">
-                <h1>Your Dashboard</h1>
-                <nav>
-
-                    <ul>
-                        <li class="selected">
-                            <a href="../pages/home.php">Home</a>
-                        </li>
-
-                        <li class="button">
-                            <a href="../pages/dashboard.php">Dashboard</a>
-                        </li>
-
-                        <li class="button">
-                            <a href="../pages/leaderboard.html">Leaderboard</a>
-                        </li>
-
-                        <li class="button">
-                            <a href="../pages/quiz.php">Quiz!</a>
-                        </li>
-                    </ul>
-                </nav>
+                <?php include '../layout/header.php' ?>
             </div>
-
         </header>
 
-    <main>
-       
-    </main>
+        <main>
+            <h1>Home</h1>
+            <p>This is the homepage for Quizberry!</p>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <?php include '../layout/footer.php' ?>
+            </div>
+        </footer>
+
 
     </body>
 

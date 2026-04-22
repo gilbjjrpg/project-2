@@ -6,13 +6,19 @@
     </head>
 
     <body>
-        <?php include 'header.php'; ?>
+        <header>
+            <?php include '../layout/header.php'; ?>
+        </header>
+
         <main>
             <h1>Your Dashboard</h1>
             <p>Welcome </p>
         </main>
-        <?php include 'footer.php'; ?>
 
+        <footer>
+            <?php include '../layout/footer.php'; ?>
+        </footer>
+        
     </body>
 
 </html>
