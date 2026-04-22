@@ -4,6 +4,7 @@
 
 <header>
   <div class="header-container">
+    <h1>Quizberry! </h1>
     <nav>
       <ul>
         <li class="selected">
@@ -11,15 +12,15 @@
         </li>
 
         <li class="button">
-          <a href="../pages/leaderboard.html">Leaderboard</a>
+          <a href="../pages/leaderboard.php">Leaderboard</a>
         </li>
 
         <li class="button">
-          <a href="../pages/quiz.html">Quiz!</a>
+          <a href="../pages/quiz.php">Quiz!</a>
         </li>
 
         <li class="button">
-          <a href="../pages/scores.html">Scores</a>
+          <a href="../pages/scores.php">Scores</a>
         </li>
       </ul>
     </nav>

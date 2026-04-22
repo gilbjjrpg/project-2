@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
-        <title>Home — Quizberry!</title>
+        <title>Your dashboard — Quizberry</title>
     </head>
 
     <body>
@@ -12,20 +12,16 @@
                 <nav>
 
                     <ul>
-                        <li class="selected">
-                            <a href="../pages/home.html">Home</a>
-                        </li>
-
                         <li class="button">
                             <a href="../pages/dashboard.php">Dashboard</a>
                         </li>
 
-                        <li class="button">
-                            <a href="../pages/leaderboard.html">Leaderboard</a>
+                        <li class="selected">
+                            <a href="../pages/leaderboard.php">Leaderboard</a>
                         </li>
 
                         <li class="button">
-                            <a href="../pages/quiz.html">Quiz!</a>
+                            <a href="../pages/quiz.php">Quiz!</a>
                         </li>
                     </ul>
                 </nav>
