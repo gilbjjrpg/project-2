@@ -2,42 +2,38 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
-        <title>Quiz time! - Quizberry!</title>
         <link rel="stylesheet" href="../style/style.css">
-
-        <script>
-            window.addEventListener("DOMContentLoaded", function() {
-                setupQuizTimePage();
-            });
-
-            let allQuestions = [];
-            let quizQuestions = [];
-            let currentQuestionIndex = 0;
-            let totalCorrect = 0;
-            let selecterAnswer = null;
-            let quizConfig = null;
-
-        </script>
-
+        <script src="../scripts/quiz.js" defer></script>
+        <title>Quiz time! - Quizberry!</title>
     </head>
 
-    <main>
-        <div id="quizContainer">
-            <p id="quizProgress"></p>
-            <p id="quizTimer"></p>
+    <body>
+        <header>
+            <?php include '../layout/header.php' ?>
+        </header>
 
-            <h2 id="questionText"></h2>
+        <main>
+            <div id="quizContainer">
+                <p id="quizProgress"></p>
+                <p id="quizTimer"></p>
 
-            <div id="answerContainer">
-                <button class="answer-btn"></button>
-                <button class="answer-btn"></button>
-                <button class="answer-btn"></button>
-                <button class="answer-btn"></button>
+                <h2 id="questionText"></h2>
+
+                <div id="answerContainer">
+                    <button class="answer-btn"></button>
+                    <button class="answer-btn"></button>
+                    <button class="answer-btn"></button>
+                    <button class="answer-btn"></button>
+                </div>
+
+                <button id="nextBtn">Next</button>
+
             </div>
+        </main>
 
-            <button id="nextBtn">Next</button>
-
-        </div>
-    </main>
+        <footer>
+            <?php include '../layout/header.php' ?>
+        </footer>
+    </body>
     
 </html>
