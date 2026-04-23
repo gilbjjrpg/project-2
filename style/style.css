@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #f0f0f0;
+    --bg-color: #921cfa;
 }
 
 html, body {
@@ -20,7 +20,7 @@ header h1 {
 body {
   margin: 0;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-  background: #450589;
+  background: #ffffff;
   color: #222;
 }
 
@@ -134,7 +134,7 @@ input:focus {
   font-size: 0.95rem;
 }
 
-.quizContainer {
+#quizContainer {
   display: flex;
   color: white;
   justify-content: center;
@@ -142,7 +142,14 @@ input:focus {
   flex-direction: column;
 }
 
-.quizProgress, .quizTimer, .questionText {
+#answerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#quizProgress, #quizTimer, #questionText {
   color: black;
 }
 
