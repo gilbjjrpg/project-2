@@ -13,9 +13,29 @@ $usersFile = "../data/users.json";
 $usersJson = file_get_contents($usersFile);
 $users = json_decode($usersJson, true);
 
-$name = $currentUser['name'];
-$username = $currentUser['username'];
-$email = $currentUser['email'];
+//Gets the logged-in name from the session
+$currentUsername = $_SESSION['username'] ?? null;
+
+//Start with no user found
+$currentUser = null;
+
+//Look through users.json for the matching user
+if($currentUsername) {
+    foreach($users as $user) {
+        if($user['username'] === $currentUsername) {
+            $currentUser = $user;
+            break;
+        }
+    }
+}
+
+//Only assifn IF a current user was found
+if($currentUser) {
+    $name = $currentUser['name'];
+    $username = $currentUser['username'];
+    $email = $currentUser['email'];
+    $playHistory = $currentUser['playHistory'];
+}
 
 ?>
     <body>
@@ -24,6 +44,7 @@ $email = $currentUser['email'];
         </header>
 
         <main>
+
             <?php if ($currentUser): ?>
                 <h1>Welcome, <?php echo $name; ?>!</h1>
                 <h2>Your Dashboard</h2>
@@ -32,10 +53,10 @@ $email = $currentUser['email'];
 
                 <h2>Play History</h2>
 
-                <?php $playHistory = $currentUser['playHistory']; ?>
-
-                <?php if(count($playHistory) > 0); ?>
+                <?php if (count($playHistory) > 0): ?>
+                
                     <table border="1">
+                        
                         <tr>
                             <th>Quiz Type</th>
                             <th>Score</th>
@@ -43,16 +64,21 @@ $email = $currentUser['email'];
                         </tr>
 
                         <?php foreach ($playHistory as $quiz): ?>
+
                             <tr>
                                 <td><?php echo $quiz['quizType']; ?></td>
                                 <td><?php echo $quiz['score']; ?>%</td>
                                 <td><?php echo $quiz['date']; ?></td>
                             </tr>
-                        <?php eandforeach; ?>
+
+                        <?php endforeach; ?>
+
                     </table>
+
                 <?php else: ?>
                     <p>No quiz history yet. Play a quiz or sign up to get your history started!"</p>
                 <?php endif; ?>
+
             <?php else: ?>
                 <p>No user is currently logged in.</p>
             <?php endif; ?>
