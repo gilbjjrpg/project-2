@@ -1,7 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+
 
 <?php
+session_start();
+
+$usersFile = "../data/users.json";
+$usersJson = file_get_contents($usersFile);
+$users = json_decode($usersJson, true);
+
+$errorMessage = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $loginIdentifier = $_POST["loginIdentifier"] ?? "";
+    $loginPassword = $_POST["loginPassword"] ?? "";
+
+    $matchedUser = null;
+
+    foreach ($users as $user) {
+        if (
+            ($user["username"] === $loginIdentifier || $user["email"] === $loginIdentifier) &&
+            $user["password"] === $loginPassword
+        ) {
+            $matchedUser = $user;
+            break;
+        }
+    }
+
+    if ($matchedUser) {
+        $_SESSION["username"] = $matchedUser["username"];
+        header("Location: dashboard.php");
+        exit;
+    } else {
+        $errorMessage = "Invalid username/email or password.";
+    }
+}
 
 // ----> THIS IS THE LOGIN/REGISTER PAGE. DO NOT CHANGE. <----
 
@@ -12,6 +43,8 @@
        Username: mike1202 | Password: quiz789
 */
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 

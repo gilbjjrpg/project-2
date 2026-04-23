@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-            <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
-            <link rel="stylesheet" href="../style/style.css">
-            <title>Your dashboard — Quizberry!</title>
-    </head>
-
 <?php
 session_start();
 
@@ -38,6 +30,15 @@ if($currentUser) {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
+            <link rel="stylesheet" href="../style/style.css">
+            <title>Your dashboard — Quizberry!</title>
+    </head>
+
     <body>
         <header>
             <?php include '../layout/header.php'; ?>
@@ -56,7 +57,7 @@ if($currentUser) {
                 <?php if (count($playHistory) > 0): ?>
                 
                     <table border="1">
-                        
+
                         <tr>
                             <th>Quiz Type</th>
                             <th>Score</th>
