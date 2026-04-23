@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div class="page-wrapper">
+  <div class="login-page-wrapper">
     <div class="login-card">
       <h1>Quizberry!</h1>
       <p class="subtitle">Login, sign up later, or continue as a guest.</p>
