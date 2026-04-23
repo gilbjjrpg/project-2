@@ -216,5 +216,5 @@ function showFinalScore() {
     const quizContainer = document.getElementById("quizContainer");
     const scorePercent = Math.round((totalCorrect / quizQuestions.length) * 100);
 
-    quizContainer.innerHTML = '<h2>Quiz complete!</h2> <p>You got ${totalCorrect} out of ${quizQuestions.length} correct.</p> <p>Your score: $scorePercent</p>';
+    quizContainer.innerHTML = "<h2>Quiz complete!</h2><p>You got " + (totalCorrect) + " out of " + quizQuestions.length + " correct.</p> <p>Your score: " + scorePercent + "</p>";
 }

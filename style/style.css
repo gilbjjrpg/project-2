@@ -1,5 +1,5 @@
 :root {
-    --bg-color: (#f0f0f0);
+    --bg-color: #f0f0f0;
 }
 
 html, body {
@@ -132,6 +132,18 @@ input:focus {
 .demo-accounts p {
   margin: 6px 0;
   font-size: 0.95rem;
+}
+
+.quizContainer {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.quizProgress, .quizTimer, .questionText {
+  color: black;
 }
 
 /*
