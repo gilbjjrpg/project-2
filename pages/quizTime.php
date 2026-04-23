@@ -8,9 +8,6 @@
     </head>
 
     <body>
-        <header>
-            <?php include '../layout/header.php' ?>
-        </header>
 
         <main>
             <div id="quizContainer">
@@ -31,9 +28,6 @@
             </div>
         </main>
 
-        <footer>
-            <?php include '../layout/header.php' ?>
-        </footer>
     </body>
     
 </html>
