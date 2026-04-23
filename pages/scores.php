@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
-        <title>Quiz! — Quizberry</title>
+        <link rel="stylesheet" href="../style/style.css">
+        <title>Scores — Quizberry!</title>
     </head>
 
     <body>
