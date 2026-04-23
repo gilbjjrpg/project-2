@@ -5,7 +5,8 @@
 
 <header>
   <div class="header-container">
-    <h1>Quizberry! </h1>
+    <h1>Quizberry!</h1>
+
     <nav>
       <ul>
         <li class="button">
@@ -25,5 +26,6 @@
         </li>
       </ul>
     </nav>
+    
   </div>
 </header>

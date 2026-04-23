@@ -16,39 +16,48 @@ header{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     margin-left: calc(50% - 50vw);
     box-sizing: border-box;
     border-top: 3px;
     border-radius: 0;
     color: black;
-    padding: 10px 0;
+    padding: 10px 20px;
     background-color: #921cfa;
 }
 
 .header-container {
     width: 100%;
     max-width: 1100px;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: row;
 }
 
 header h1 {
     /* For header font */
+    margin: 0;
     font-size: 55px;
-    text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
-    align-items: center;
     text-shadow: 3px 3px 1px black;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 nav li a {
     /*Styling for buttons.*/
     display: block;
-    padding: 15px;
+    padding: 15px 25px;
     font-weight: bold;
     text-decoration: none;
 

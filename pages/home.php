@@ -7,9 +7,7 @@
 
     <body>
         <header>
-            <div class="header-container">
-                <?php include '../layout/header.php' ?>
-            </div>
+            <?php include '../layout/header.php' ?>
         </header>
 
         <main>

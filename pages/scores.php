@@ -8,8 +8,6 @@
     <body>
         <header>
             <?php include '../layout/header.php' ?>
-            </div>
-
         </header>
 
         <main>

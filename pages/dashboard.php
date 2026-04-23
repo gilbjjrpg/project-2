@@ -7,7 +7,7 @@
 
     <body>
         <header>
-            <?php include '../layout/header.php'; ?>
+            <?php include '../layout/header.php' ?>
         </header>
 
         <main>
