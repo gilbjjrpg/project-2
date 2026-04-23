@@ -14,7 +14,7 @@ function setupQuizMenuPage() {
     }
 
     startTenQuestionBtn.addEventListener("click", function(event) {
-        event.preventDefault;
+        event.preventDefault();
 
         const quizConfig = {
             mode: "basic",
@@ -73,7 +73,7 @@ let quizConfig = null;
 
 async function setupQuizTimePage() {
     const questionText = document.getElementById("questionText");
-    const answerButtons = document.querySelectorAll(".answer-btn:");
+    const answerButtons = document.querySelectorAll(".answer-btn");
     const nextBtn = document.getElementById("nextBtn");
 
     if(!questionText || answerButtons.length === 0 || !nextBtn) {
@@ -125,7 +125,7 @@ function shuffleArray(array){
 
     for(let i = copiedArray.length - 1; i > 0; i--) {
         const randomIndex = Math.floor(Math.random() * (i + 1));
-        [copiedArray[i], copiedArray[randomIndex] = [copiedArray[randomIndex], copiedArray[i]]];
+        [copiedArray[i], copiedArray[randomIndex]] = [copiedArray[randomIndex], copiedArray[i]];
     }
 
     return copiedArray;
@@ -137,7 +137,7 @@ function shuffleArray(array){
 
 function generateQuizQuestions(questions, amount) {
     const shuffledQuestions = shuffleArray(questions);
-    return shuffleArray.slice(0, amount);
+    return shuffledQuestions.slice(0, amount);
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -152,7 +152,7 @@ function displayQuestion() {
     const currentQuestion = quizQuestions[currentQuestionIndex];
 
     questionText.textContent = currentQuestion.question;
-    quizProgress.textContent = 'Question ${currentQuestionIndex + 1} of ${quizQuestions.length}';
+    quizProgress.textContent = "Question " + (currentQuestionIndex + 1) + " of " + quizQuestions.length;
 
     answerButtons[0].textContent = currentQuestion.A;
     answerButtons[0].dataset.answer = "A";
