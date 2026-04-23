@@ -59,6 +59,8 @@ function setupLoginPage() {
       });
 
       if (matchedUser) {
+        document.cookie = "username=" + encodeURIComponent(matchedUser.username) + "; path=/";
+        window.location.href = "dashboard.php";
         sessionStorage.setItem("currentUser", JSON.stringify({
           id: matchedUser.id,
           username: matchedUser.username,

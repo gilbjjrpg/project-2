@@ -1,28 +1,22 @@
 <?php
-session_start();
 
 $usersFile = "../data/users.json";
 $usersJson = file_get_contents($usersFile);
 $users = json_decode($usersJson, true);
 
-//Gets the logged-in name from the session
-$currentUsername = $_SESSION['username'] ?? null;
-
-//Start with no user found
+$currentUsername = $_COOKIE['username'] ?? null;
 $currentUser = null;
 
-//Look through users.json for the matching user
-if($currentUsername) {
-    foreach($users as $user) {
-        if($user['username'] === $currentUsername) {
+if ($currentUsername) {
+    foreach ($users as $user) {
+        if ($user['username'] === $currentUsername) {
             $currentUser = $user;
             break;
         }
     }
 }
 
-//Only assifn IF a current user was found
-if($currentUser) {
+if ($currentUser) {
     $name = $currentUser['name'];
     $username = $currentUser['username'];
     $email = $currentUser['email'];

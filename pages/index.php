@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 
@@ -61,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <h1>Quizberry!</h1>
       <p class="subtitle">Login, sign up later, or continue as a guest.</p>
 
-      <form id="loginForm">
+      <form id="loginForm" method="POST" action="">
         <label for="loginIdentifier">Username or Email</label>
         <input type="text" id="loginIdentifier" name="loginIdentifier" placeholder="Enter username or email">
 
