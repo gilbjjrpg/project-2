@@ -20,7 +20,7 @@ $email = $currentUser['email'];
 ?>
     <body>
         <header>
-            <?php include '../layout/header.php' ?>
+            <?php include '../layout/header.php'; ?>
         </header>
 
         <main>
@@ -34,7 +34,7 @@ $email = $currentUser['email'];
 
                 <?php $playHistory = $currentUser['playHistory']; ?>
 
-                <?php if(count($playHistory) > 0): ?>
+                <?php if(count($playHistory) > 0); ?>
                     <table border="1">
                         <tr>
                             <th>Quiz Type</th>
