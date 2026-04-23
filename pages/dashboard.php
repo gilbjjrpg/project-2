@@ -1,23 +1,59 @@
 <!DOCTYPE html>
-
-<?php
-
-?>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
-        <link rel="stylesheet" href="../style/style.css">
-        <title>Your dashboard — Quizberry!</title>
+            <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
+            <link rel="stylesheet" href="../style/style.css">
+            <title>Your dashboard — Quizberry!</title>
     </head>
 
+<?php
+session_start();
+
+$usersFile = "../data/users.json";
+$usersJson = file_get_contents($usersFile);
+$users = json_decode($usersJson, true);
+
+$name = $currentUser['name'];
+$username = $currentUser['username'];
+$email = $currentUser['email'];
+
+?>
     <body>
         <header>
             <?php include '../layout/header.php' ?>
         </header>
 
         <main>
-            <h1>Your Dashboard</h1>
-            <p>Welcome </p>
+            <?php if ($currentUser): ?>
+            <h1>Welcome, <?php echo $name; ?>!</h1>
+            <h2>Your Dashboard</h2>
+            <p>Username: <?php echo $username; ?></p>
+            <p>Email: <?php echo $email; ?></p>
+
+            <h2>Play History</h2>
+
+            <?php $playHistory = $currentUser['playHistory']; ?>
+
+            <?php if(count($playHistory) > 0): ?>
+                <table border="1">
+                    <tr>
+                        <th>Quiz Type</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                    </tr>
+
+                    <?php foreach ($playHistory as $quiz): ?>
+                        <tr>
+                            <td><?php echo $quiz['quizType']; ?></td>
+                            <td><?php echo $quiz['score']; ?>%</td>
+                            <td><?php echo $quiz['date']; ?></td>
+                        </tr>
+                    <?php eandforeach; ?>
+                </table>
+            <?php else: ?>
+                <p>No quiz history yet. Play a quiz or sign up to get your history started!"</p>
+            <?php endif; ?>
+
         </main>
 
         <footer>
