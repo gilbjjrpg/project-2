@@ -25,33 +25,36 @@ $email = $currentUser['email'];
 
         <main>
             <?php if ($currentUser): ?>
-            <h1>Welcome, <?php echo $name; ?>!</h1>
-            <h2>Your Dashboard</h2>
-            <p>Username: <?php echo $username; ?></p>
-            <p>Email: <?php echo $email; ?></p>
+                <h1>Welcome, <?php echo $name; ?>!</h1>
+                <h2>Your Dashboard</h2>
+                <p>Username: <?php echo $username; ?></p>
+                <p>Email: <?php echo $email; ?></p>
 
-            <h2>Play History</h2>
+                <h2>Play History</h2>
 
-            <?php $playHistory = $currentUser['playHistory']; ?>
+                <?php $playHistory = $currentUser['playHistory']; ?>
 
-            <?php if(count($playHistory) > 0): ?>
-                <table border="1">
-                    <tr>
-                        <th>Quiz Type</th>
-                        <th>Score</th>
-                        <th>Date</th>
-                    </tr>
-
-                    <?php foreach ($playHistory as $quiz): ?>
+                <?php if(count($playHistory) > 0): ?>
+                    <table border="1">
                         <tr>
-                            <td><?php echo $quiz['quizType']; ?></td>
-                            <td><?php echo $quiz['score']; ?>%</td>
-                            <td><?php echo $quiz['date']; ?></td>
+                            <th>Quiz Type</th>
+                            <th>Score</th>
+                            <th>Date</th>
                         </tr>
-                    <?php eandforeach; ?>
-                </table>
+
+                        <?php foreach ($playHistory as $quiz): ?>
+                            <tr>
+                                <td><?php echo $quiz['quizType']; ?></td>
+                                <td><?php echo $quiz['score']; ?>%</td>
+                                <td><?php echo $quiz['date']; ?></td>
+                            </tr>
+                        <?php eandforeach; ?>
+                    </table>
+                <?php else: ?>
+                    <p>No quiz history yet. Play a quiz or sign up to get your history started!"</p>
+                <?php endif; ?>
             <?php else: ?>
-                <p>No quiz history yet. Play a quiz or sign up to get your history started!"</p>
+                <p>No user is currently logged in.</p>
             <?php endif; ?>
 
         </main>
