@@ -5,6 +5,12 @@
 
 // ----> THIS IS THE LOGIN/REGISTER PAGE. DO NOT CHANGE. <----
 
+/*
+      Test accounts you could use:
+       Username: josh722 | Password: test123
+       Username: amy1287 | Password: hello456
+       Username: mike1202 | Password: quiz789
+*/
 ?>
 
 <head>
@@ -34,13 +40,7 @@
         <button type="submit" class="primary-btn">Login</button>
         <button type="button" id="guestBtn" class="secondary-btn">Continue as Guest</button>
       </form>
-
-      <div class="demo-accounts">
-        <h2>Dummy Test Accounts</h2>
-        <p><strong>Username:</strong> josh722 | <strong>Password:</strong> test123</p>
-        <p><strong>Username:</strong> amy1287 | <strong>Password:</strong> hello456</p>
-        <p><strong>Username:</strong> mike1202 | <strong>Password:</strong> quiz789</p>
-      </div>
+      
     </div>
   </div>
 </body>

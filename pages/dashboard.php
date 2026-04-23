@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<?php
+
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">

@@ -48,7 +48,7 @@ function setupLoginPage() {
     }
 
     try {
-      const response = await fetch("../data/users_dummy.json");
+      const response = await fetch("../data/users.json");
       const users = await response.json();
 
       const matchedUser = users.find(function (user) {
@@ -72,7 +72,7 @@ function setupLoginPage() {
         showError("Invalid username/email or password.");
       }
     } catch (error) {
-      showError("Could not load user data. Make sure users_dummy.json is in the same folder.");
+      showError("Could not load user data. Make sure users.json is in the same folder.");
       console.error("Login error:", error);
     }
   });

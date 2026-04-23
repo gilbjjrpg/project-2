@@ -2,6 +2,7 @@
   {
     "id": 1,
     "username": "josh722",
+    "name": "Josh",
     "email": "josh722@gmail.com",
     "password": "test123",
     "isGuest": false,
@@ -21,6 +22,7 @@
   {
     "id": 2,
     "username": "amy1287",
+    "name": "Amy",
     "email": "amy1287@gmail.com",
     "password": "hello456",
     "isGuest": false,
@@ -35,6 +37,7 @@
   {
     "id": 3,
     "username": "mike1202",
+    "name": "Mike",
     "email": "mike1202@berry.com",
     "password": "quiz789",
     "isGuest": false,
