@@ -42,5 +42,50 @@
     "password": "quiz789",
     "isGuest": false,
     "playHistory": []
+  },
+  {
+    "id": 4,
+    "username": "buglover072",
+    "name": "John",
+    "email": "bugsbugsbugs@gmail.com",
+    "password": "iLoveBugs123",
+    "isGuest": false,
+    "playHistory": [
+      {
+        "quizType": "10 Question",
+        "score": 90,
+        "date": "2026-04-10"
+      },
+      {
+        "quizType": "Custom",
+        "score": 70,
+        "date": "2026-04-12"
+      },
+      {
+        "quizType": "Custom",
+        "score": 60,
+        "date": "2026-04-20"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "username": "dinodan983",
+    "name": "Daniel",
+    "email": "danidino983@gmail.com",
+    "password": "gottabeTuff90!",
+    "isGuest": false,
+    "playHistory": [
+      {
+        "quizType": "10 Question",
+        "score": 20,
+        "date": "2026-04-12"
+      },
+      {
+        "quizType": "Custom",
+        "score": 100,
+        "date": "2026-04-12"
+      }
+    ]
   }
 ]

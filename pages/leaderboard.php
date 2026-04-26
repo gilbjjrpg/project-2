@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,19 +11,28 @@
     </head>
 
     <body>
-        <header>
-            <?php include '../layout/header.php' ?>
-        </header>
+            <header>
+                <?php include '../layout/header.php' ?>
+            </header>
 
-        <main>
-            <h1>Leaderboards</h1>
-            <p>This is the leaderboard!</p>
-        </main>
+            <main style="leaderboard-container">
+                <h1>Leaderboards</h1>
+                <p>This is the leaderboard!</p>
 
-        <footer>
-            <div class="footer-container">
-                <?php include '../layout/footer.php'; ?>
-        </footer>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                    </tr>
+                </table>
+                
+            </main>
+
+            <footer>
+                <div class="footer-container">
+                    <?php include '../layout/footer.php'; ?>
+            </footer>
 
 
     </body>

@@ -38,7 +38,7 @@ if ($currentUser) {
             <?php include '../layout/header.php'; ?>
         </header>
 
-        <main>
+        <main class="dashboard-container">
 
             <?php if ($currentUser): ?>
                 <h1>Welcome, <?php echo $name; ?>!</h1>
