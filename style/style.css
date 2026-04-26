@@ -238,6 +238,32 @@ input:focus {
   margin-bottom: 20px;
 }
 
+.answer-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #e5e8f0;
+  color: #222;
+  cursor: pointer;
+}
+
+.answer-btn:hover {
+  background: #d8dce8;
+}
+
+#nextBtn {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #450589;
+  color: white;
+  cursor: pointer;
+}
+
+#nextBtn:hover {
+  background: #310363;
+}
+
 /*
 Help
 */
