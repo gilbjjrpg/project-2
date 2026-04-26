@@ -113,7 +113,8 @@ async function setupQuizTimePage() {
 
     //no quizConfif = no quiz. Stops and sends an error to the console.
     if(!quizConfig) {
-        console.error("No quizConfig found.")
+        console.error("No quizConfig found.");
+        document.getElementById("quizContainer").innerHTML = "<p>Quiz settings were not found. Please go back and start a quiz from the quiz menu.</p>"
         return;
     }
 
@@ -122,7 +123,8 @@ async function setupQuizTimePage() {
 
     //if none of the questions were loaded, return an error and stop.
     if(allQuestions.length === 0) {
-        console.error("No questions loaded.")
+        console.error("No questions loaded.");
+        document.getElementById("quizContainer").innerHTML = "<p>Questions could not be loaded. Please try again.</p>"
         return;
     }
 
@@ -292,6 +294,7 @@ function handleNextQuestion() {
 
         //if not, then call showFinalScore
     } else {
+        console.log("Quiz finished. Showing results now.")
         showFinalScore();
     }
 }
@@ -301,6 +304,7 @@ function handleNextQuestion() {
 // RESULTS 
 
 function showFinalScore() {
+    console.log("showFinalScore() is running");
 
     //get the quizContainter in quizTime.php
     const quizContainer = document.getElementById("quizContainer");
@@ -310,4 +314,5 @@ function showFinalScore() {
 
     //replace the quiz area with the final results message
     quizContainer.innerHTML = "<h2>Quiz complete!</h2><p>You got " + (totalCorrect) + " out of " + quizQuestions.length + " correct.</p> <p>Your score: " + scorePercent + "</p>";
-}
+
+} 

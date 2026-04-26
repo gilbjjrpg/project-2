@@ -56,7 +56,7 @@ $leaderboardEntries = array_slice($leaderboardEntries, 0, 10);
                 <h1>Leaderboards</h1>
                 <p>This is the leaderboard!</p>
 
-                <table>
+                <table border="1">
                     <tr>
                         <th>Name</th>
                         <th>Score</th>
