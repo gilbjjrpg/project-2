@@ -207,21 +207,35 @@ input:focus {
 
 #quizContainer {
   display: flex;
-  color: white;
+  color: black;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  max-width: 700px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 6px 6px 6px rgb(35,35,35);
 }
 
 #answerContainer {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
-#quizProgress, #quizTimer, #questionText {
+#quizProgress, #quizTimer{
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+#questionText {
   color: black;
+  margin-bottom: 20px;
 }
 
 /*

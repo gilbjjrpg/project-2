@@ -313,6 +313,10 @@ function showFinalScore() {
     const scorePercent = Math.round((totalCorrect / quizQuestions.length) * 100);
 
     //replace the quiz area with the final results message
-    quizContainer.innerHTML = "<h2>Quiz complete!</h2><p>You got " + (totalCorrect) + " out of " + quizQuestions.length + " correct.</p> <p>Your score: " + scorePercent + "</p>";
-
-} 
+    quizContainer.innerHTML =
+        "<div style='background:white; color:black; padding:30px; border-radius:12px; margin:40px;'>" +
+        "<h2>Quiz complete!</h2>" +
+        "<p>You got " + totalCorrect + " out of " + quizQuestions.length + " correct.</p>" +
+        "<p>Your score: " + scorePercent + "%</p>" +
+        "</div>";
+}
