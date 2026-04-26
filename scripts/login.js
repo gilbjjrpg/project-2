@@ -4,7 +4,9 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 // This function controls the behavior for the login page only
+
 function setupLoginPage() {
+  
     // Get the main login form, guest button, and error message box from the page
     const loginForm = document.getElementById("loginForm");
     const guestBtn = document.getElementById("guestBtn");
@@ -18,6 +20,7 @@ function setupLoginPage() {
 
     // Listen for the user submitting the login form
     loginForm.addEventListener("submit", async function (event) {
+
         // Stop the form from refreshing the page automatically
         // We want JavaScript to check the login first
         event.preventDefault();
@@ -68,6 +71,7 @@ function setupLoginPage() {
                 showError("Invalid username/email or password.");
             }
         } catch (error) {
+
             // If something goes wrong loading the JSON file,
             // show an error on the page and log the real error in the console
             console.error("Login error:", error);
@@ -78,6 +82,7 @@ function setupLoginPage() {
     // If the page has a guest button, give it guest login behavior
     if (guestBtn) {
         guestBtn.addEventListener("click", function () {
+
             // Store "Guest" as the username cookie
             // This lets the next page know the user entered as a guest
             document.cookie = "username=Guest; path=/";
