@@ -71,7 +71,7 @@ if ($currentUser) {
                     </table>
 
                 <?php else: ?>
-                    <p>No quiz history yet. Play a quiz or sign up to get your history started!"</p>
+                    <p>No quiz history yet. Play a quiz or sign up to get your history started!</p>
                 <?php endif; ?>
 
             <?php else: ?>

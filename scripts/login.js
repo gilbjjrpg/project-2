@@ -1,98 +1,96 @@
+// Wait until the HTML page is fully loaded before running any login code
 window.addEventListener("DOMContentLoaded", function () {
-  setupRouteProtection();
-  setupLoginPage();
+    setupLoginPage();
 });
 
-function setupRouteProtection() {
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  const currentPage = window.location.pathname.split("/").pop();
-
-  // Add every page here that should require login or guest access first
-  const protectedPages = [
-    "dashboard.php",
-    "quizCustomize.html",
-    "quiz.html",
-    "scores.html",
-    "leaderboard.html"
-  ];
-
-  // If the user tries to access a protected page without logging in,
-  // send them back to the login page
-  if (protectedPages.includes(currentPage) && !currentUser) {
-    window.location.href = "index.html";
-  }
-}
-
+// This function controls the behavior for the login page only
 function setupLoginPage() {
-  const loginForm = document.getElementById("loginForm");
-  const guestBtn = document.getElementById("guestBtn");
-  const errorMessage = document.getElementById("errorMessage");
+    // Get the main login form, guest button, and error message box from the page
+    const loginForm = document.getElementById("loginForm");
+    const guestBtn = document.getElementById("guestBtn");
+    const errorMessage = document.getElementById("errorMessage");
 
-  // If this page is not the login page, stop here
-  if (!loginForm || !guestBtn || !errorMessage) {
-    return;
-  }
-
-  loginForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const loginIdentifier = document.getElementById("loginIdentifier").value.trim();
-    const loginPassword = document.getElementById("loginPassword").value.trim();
-
-    errorMessage.classList.add("hidden");
-    errorMessage.textContent = "";
-
-    if (loginIdentifier === "" || loginPassword === "") {
-      showError("Please enter both your username/email and password.");
-      return;
+    // If this page does not have the login form or error box,
+    // stop here so this file does not break on other pages
+    if (!loginForm || !errorMessage) {
+        return;
     }
 
-    try {
-      const response = await fetch("../data/users.json");
-      const users = await response.json();
+    // Listen for the user submitting the login form
+    loginForm.addEventListener("submit", async function (event) {
+        // Stop the form from refreshing the page automatically
+        // We want JavaScript to check the login first
+        event.preventDefault();
 
-      const matchedUser = users.find(function (user) {
-        return (
-          (user.username === loginIdentifier || user.email === loginIdentifier) &&
-          user.password === loginPassword
-        );
-      });
+        // Get whatever the user typed into the login fields
+        const loginIdentifier = document.getElementById("loginIdentifier").value.trim();
+        const loginPassword = document.getElementById("loginPassword").value.trim();
 
-      if (matchedUser) {
-        document.cookie = "username=" + encodeURIComponent(matchedUser.username) + "; path=/";
-        window.location.href = "dashboard.php";
-        sessionStorage.setItem("currentUser", JSON.stringify({
-          id: matchedUser.id,
-          username: matchedUser.username,
-          email: matchedUser.email,
-          isGuest: false,
-          playHistory: matchedUser.playHistory
-        }));
+        // Clear any previous error message before doing a new check
+        errorMessage.textContent = "";
+        errorMessage.classList.add("hidden");
 
-        window.location.href = "dashboard.php";
-      } else {
-        showError("Invalid username/email or password.");
-      }
-    } catch (error) {
-      showError("Could not load user data. Make sure users.json is in the same folder.");
-      console.error("Login error:", error);
+        // Basic validation:
+        // If either field is empty, show an error and stop
+        if (loginIdentifier === "" || loginPassword === "") {
+            showError("Please enter both your username/email and password.");
+            return;
+        }
+
+        try {
+            // Load the users.json file
+            const response = await fetch("../data/users.json");
+            const users = await response.json();
+
+            // Look for a user whose username OR email matches,
+            // and whose password also matches
+            const matchedUser = users.find(function (user) {
+                return (
+                    (user.username === loginIdentifier || user.email === loginIdentifier) &&
+                    user.password === loginPassword
+                );
+            });
+
+            // If a user match was found, login is successful
+            if (matchedUser) {
+                // Store the username in a cookie so dashboard.php can read it
+                document.cookie =
+                    "username=" + encodeURIComponent(matchedUser.username) + "; path=/";
+
+                // Also store the full user object in sessionStorage
+                // This is optional, but useful if other JS pages need quick access to the user
+                sessionStorage.setItem("currentUser", JSON.stringify(matchedUser));
+
+                // Send the user to the dashboard page
+                window.location.href = "dashboard.php";
+            } else {
+                // No match found, so login failed
+                showError("Invalid username/email or password.");
+            }
+        } catch (error) {
+            // If something goes wrong loading the JSON file,
+            // show an error on the page and log the real error in the console
+            console.error("Login error:", error);
+            showError("Could not load user data.");
+        }
+    });
+
+    // If the page has a guest button, give it guest login behavior
+    if (guestBtn) {
+        guestBtn.addEventListener("click", function () {
+            // Store "Guest" as the username cookie
+            // This lets the next page know the user entered as a guest
+            document.cookie = "username=Guest; path=/";
+
+            // Redirect guest users to the dashboard page
+            window.location.href = "dashboard.php";
+        });
     }
-  });
 
-  guestBtn.addEventListener("click", function () {
-    sessionStorage.setItem("currentUser", JSON.stringify({
-      id: null,
-      username: "Guest",
-      email: "",
-      isGuest: true,
-      playHistory: []
-    }));
-
-    window.location.href = "dashboard.php";
-  });
-
-  function showError(message) {
-    errorMessage.textContent = message;
-    errorMessage.classList.remove("hidden");
-  }
+    // Helper function:
+    // Shows an error message inside the error box on the page
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove("hidden");
+    }
 }
