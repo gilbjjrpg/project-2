@@ -251,6 +251,13 @@ input:focus {
   background: #d8dce8;
 }
 
+.answer-btn.selected {
+  background: #bfc6d4;
+  border: 2px solid #450589;
+  color: black;
+  font-weight: bold;
+}
+
 #nextBtn {
   padding: 12px;
   border: none;

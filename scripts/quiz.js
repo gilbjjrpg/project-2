@@ -260,7 +260,17 @@ function setupAnswerButtons() {
 
         //when a button is clicked, save its answer letter
         button.addEventListener("click", function() {
+
+            //removes selected style from all buttons FIRST
+            answerButtons.forEach(function (btn) {
+                btn.classList.remove("selected");
+            });
+
+            //save the selected answer letter 
             selectedAnswer = button.dataset.answer;
+
+            //add the selected style to the clicked button
+            button.classList.add("selected");
         });
     });
 }
