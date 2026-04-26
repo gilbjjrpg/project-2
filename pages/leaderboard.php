@@ -4,7 +4,7 @@ $usersJson = file_get_contents($usersFile);
 $users = json_decode($usersJson, true);
 
 //Array to hold every leaderboard entry
-$leaderboardEntries - [];
+$leaderboardEntries = [];
 
 //Loops through each user
 foreach($users as $user) {
@@ -15,7 +15,7 @@ foreach($users as $user) {
 
     //If the user has a play history, check each quiz result
     if(!empty($user['playHistory'])) {
-        foreach($user['playHistory'] as quiz) {
+        foreach($user['playHistory'] as $quiz) {
 
         //only include 10 Question quizzes on the leaderboard!
             if($quiz['quizType'] === "10 Question") {
@@ -31,7 +31,7 @@ foreach($users as $user) {
 
 //sorting function (highest score first)
 usort($leaderboardEntries, function($a, $b) {
-    return $b[score] <=> $a['score'];
+    return $b['score'] <=> $a['score'];
 });
 
 //keep ONLY the top 10
