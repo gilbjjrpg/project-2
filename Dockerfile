@@ -4,7 +4,7 @@ FROM php:8.2-apache
 RUN a2enmod rewrite
 
 # Install MySQL extensions for PHP
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apt-get update && apt-get install -y libsqlite3-dev sqlite3
 
 # Copy the whole project into Apache's web root
 COPY . /var/www/html/

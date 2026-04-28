@@ -24,5 +24,45 @@ $db->exec("
     )
 ");
 
+$usersFile = "../data/users.json";
+$usersJson = file_get_contents($usersFile);
+$users = json_decode($usersJson, true);
+
+foreach ($users as $user) {
+    if (!isset($user['username'])) {
+        continue;
+    }
+
+    $stmt = $db->prepare("
+        INSERT OR IGNORE INTO users (id, username, name, email, password, is_guest)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ");
+
+    $stmt->execute([
+        $user['id'],
+        $user['username'],
+        $user['name'],
+        $user['email'],
+        $user['password'],
+        $user['isGuest'] ? 1 : 0
+    ]);
+
+    if (!empty($user['playHistory'])) {
+        foreach ($user['playHistory'] as $quiz) {
+            $scoreStmt = $db->prepare("
+                INSERT INTO scores (user_id, quiz_type, score, date_taken)
+                VALUES (?, ?, ?, ?)
+            ");
+
+            $scoreStmt->execute([
+                $user['id'],
+                $quiz['quizType'],
+                $quiz['score'],
+                $quiz['date']
+            ]);
+        }
+    }
+}
+
 echo "Database setup complete.";
 ?>
