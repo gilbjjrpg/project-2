@@ -73,4 +73,5 @@ foreach ($users as $user) {
 }
 
 echo "Database setup complete.";
+
 ?>
