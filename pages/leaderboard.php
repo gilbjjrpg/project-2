@@ -1,14 +1,16 @@
 <?php
 include '../data/database.php';
 
-$sql = "SELECT users.name, scores.score, scores.date_taken
-        FROM scores
-        JOIN users ON scores.user_id = users.id
-        WHERE scores.quiz_type = '10 Question'
-        ORDER BY scores.score DESC, scores.date_taken ASC
-        LIMIT 10";
+$sql = "
+    SELECT users.name, scores.score, scores.date_taken
+    FROM scores
+    JOIN users ON scores.user_id = users.id
+    WHERE scores.quiz_type = '10 Question'
+    ORDER BY scores.score DESC, scores.date_taken ASC
+    LIMIT 10
+";
 
-        $result = $conn->query($sql);
+$result = $db->query($sql);
 ?>
 
 <!DOCTYPE html>

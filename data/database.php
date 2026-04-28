@@ -1,13 +1,9 @@
 <?php
-$host = "localhost";
-$dbname = "quizberry";
-$username = "root";
-$password = "";
-
-$conn = new mysqli($host, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $db = new PDO("sqlite:../data/quizberry.db");
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $error) {
+    die("Database connection failed: " . $error->getMessage());
 }
 
 
