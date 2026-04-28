@@ -1,7 +1,9 @@
 <?php
-$db = new PDO("sqlite:../data/quizberry.db");
+$dbPath = __DIR__ . "/../data/quizberry.db";
+$db = new PDO("sqlite:" . $dbPath);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+// Create tables
 $db->exec("
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,17 +26,23 @@ $db->exec("
     )
 ");
 
-$usersFile = "../data/users.json";
+// Clear old seed data so re-running this page does not duplicate everything
+$db->exec("DELETE FROM scores");
+$db->exec("DELETE FROM users");
+
+// Load users.json
+$usersFile = __DIR__ . "/../data/users.json";
 $usersJson = file_get_contents($usersFile);
 $users = json_decode($usersJson, true);
 
+// Insert users and play history
 foreach ($users as $user) {
     if (!isset($user['username'])) {
         continue;
     }
 
     $stmt = $db->prepare("
-        INSERT OR IGNORE INTO users (id, username, name, email, password, is_guest)
+        INSERT INTO users (id, username, name, email, password, is_guest)
         VALUES (?, ?, ?, ?, ?, ?)
     ");
 
