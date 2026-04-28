@@ -11,6 +11,7 @@ $sql = "
 ";
 
 $result = $db->query($sql);
+$rows = $result->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -37,19 +38,20 @@ $result = $db->query($sql);
                         <th>Date</th>
                     </tr>
 
-                    <?php if($result && $result->num_rows > 0): ?>
-                        <?php while ($row = $result->fetch_assoc()): ?>
-                            <tr>
-                                <td><?php echo $row['name']; ?></td>
-                                <td><?php echo $row['score']; ?>%</td>
-                                <td><?php echo $row['date_taken']; ?></td>
-                            </tr>
-                        <?php endwhile; ?>
+                    <?php if (count($rows) > 0): ?>
+                        <?php foreach ($rows as $row): ?>
+                        <tr>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['score']; ?>%</td>
+                            <td><?php echo $row['date_taken']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
                             <td colspan="3">No leaderboard scores yet.</td>
                         </tr>
                     <?php endif; ?>
+
                 </table>
             </main>
 
