@@ -1,42 +1,14 @@
 <?php
-$usersFile = "../data/users.json";
-$usersJson = file_get_contents($usersFile);
-$users = json_decode($usersJson, true);
+include '../data/database.php';
 
-//Array to hold every leaderboard entry
-$leaderboardEntries = [];
+$sql = "SELECT users.name, scores.score, scores.date_taken
+        FROM scores
+        JOIN users ON scores.user_id = users.id
+        WHERE scores.quiz_type = '10 Question'
+        ORDER BY socres.score DESC, scores.date_taken ASC
+        LIMIT 10";
 
-//Loops through each user
-foreach($users as $user) {
-    //Skips guests just in case
-    if (!empty($user['isGuest'])) {
-        continue;
-    }
-
-    //If the user has a play history, check each quiz result
-    if(!empty($user['playHistory'])) {
-        foreach($user['playHistory'] as $quiz) {
-
-        //only include 10 Question quizzes on the leaderboard!
-            if($quiz['quizType'] === "10 Question") {
-                $leaderboardEntries[] = [
-                    "name" => $user['name'],
-                    "score" => $quiz['score'],
-                    "date" => $quiz['date']
-                ];
-            }
-        }
-    }
-}
-
-//sorting function (highest score first)
-usort($leaderboardEntries, function($a, $b) {
-    return $b['score'] <=> $a['score'];
-});
-
-//keep ONLY the top 10
-$leaderboardEntries = array_slice($leaderboardEntries, 0, 10);
-
+        $result = -> $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -63,14 +35,14 @@ $leaderboardEntries = array_slice($leaderboardEntries, 0, 10);
                         <th>Date</th>
                     </tr>
 
-                    <?php if(count($leaderboardEntries) > 0): ?>
-                        <?php foreach($leaderboardEntries as $entry): ?>
+                    <?php if(result && $result->num_rows > 0): ?>
+                        <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo $entry['name']; ?></td>
                                 <td><?php echo $entry['score']; ?>%</td>
-                                <td><?php echo $entry['date']; ?></td>
+                                <td><?php echo $entry['date_taken']; ?></td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php endwhile; ?>
                     <?php else: ?>
                         <tr>
                             <td colspan="3">No leaderboard scores yet.</td>
