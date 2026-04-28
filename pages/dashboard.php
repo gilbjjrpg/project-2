@@ -9,6 +9,10 @@ $currentUser = null;
 
 if ($currentUsername) {
     foreach ($users as $user) {
+        if (!isset($user['username'])) {
+            continue;
+        }
+
         if ($user['username'] === $currentUsername) {
             $currentUser = $user;
             break;
