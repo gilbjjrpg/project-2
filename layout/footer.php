@@ -4,6 +4,8 @@
 
 ?>
 
-<footer>
-  <p>Quizberry! Copyright blah blah blah</p>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>Quizberry! Copyright blah blah blah</p>
+  </div>
 </footer>

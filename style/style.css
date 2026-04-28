@@ -271,6 +271,31 @@ input:focus {
   background: #310363;
 }
 
+.site-footer{
+    /* Styling rules for all things within the site-footer class. Gives the spacing, 
+    color and scaling to all elements that are decedents of the id */
+    margin-top: 20px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    box-sizing: border-box;
+
+    border-top: 3px solid rgb(116, 116, 255);
+    border-bottom: 3px solid rgb(116, 116, 255);
+    border: 3px solid rgb(116, 116, 255);
+    border-radius: 0px;
+    background-color: rgb(116, 116, 255);
+
+    padding: 5px 0;
+    
+}
+
+.footer-inner{
+    /* Width. margin and padding rules for the footer. */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 /*
 Help
 */
