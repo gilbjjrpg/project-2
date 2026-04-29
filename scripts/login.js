@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 // This function controls behavior for the login page
 function setupLoginPage() {
+
     // Get the login form, guest button, and error message box
     const loginForm = document.getElementById("loginForm");
     const guestBtn = document.getElementById("guestBtn");
@@ -15,10 +16,10 @@ function setupLoginPage() {
         return;
     }
 
-    // Front-end validation for the normal login form
+    // Handle normal login form submission
     loginForm.addEventListener("submit", function (event) {
       
-        // Get the values from the login fields
+        // Get the values from the form fields
         const loginIdentifier = document.getElementById("loginIdentifier").value.trim();
         const loginPassword = document.getElementById("loginPassword").value.trim();
 
@@ -35,7 +36,7 @@ function setupLoginPage() {
         // If both fields are filled in, let the form submit normally to PHP
     });
 
-    // Guest button behavior
+    // Handle guest login button
     if (guestBtn) {
         guestBtn.addEventListener("click", function () {
 

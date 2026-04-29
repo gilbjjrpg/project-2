@@ -1,7 +1,8 @@
 [
   {
     "_comment": "This file WAS being used to store user data, but that is all being moved over to SQL.",
-    "_comment2": "If there are any further changes made, I will update this segment with more comments."
+    "_comment2": "Now this file is used to display demo data and give dummy users to log in as.",
+    "_comment3": "If there are any further changes made, I will update this segment with more comments."
   },
   {
     "id": 1,

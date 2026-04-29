@@ -32,7 +32,7 @@ if ($currentUsername && !$isGuest) {
 
     // if a matching user was found, get that user's score history
     if ($currentUser) {
-        
+
         // prepare a query to get all quiz scores for this user
         $scoreStmt = $db->prepare("
             SELECT quiz_type, score, date_taken
@@ -76,7 +76,6 @@ if ($currentUsername && !$isGuest) {
 
                 <!-- Show the user's name at the top -->
                 <h1>Welcome, <?php echo $currentUser['name']; ?>!</h1>
-
                 <h2>Your Dashboard</h2>
 
                 <p>Username: <?php echo $currentUser['username']; ?></p>

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Only continue if both fields were filled in
     if ($loginIdentifier !== "" && $loginPassword !== "") {
-
+      
         // Prepare a query to find a user whose username OR email matches
         $stmt = $db->prepare("
             SELECT id, username, name, email, password, is_guest

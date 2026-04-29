@@ -14,7 +14,7 @@ $currentUser = null;
 // This will hold all score rows for the current user
 $userScores = [];
 
-// Only continue if a username cookie exists
+// Only continue if a username cookie exists & user is NOT a guest
 if ($currentUsername && !$isGuest) {
 
     // Find the logged-in user in the users table
