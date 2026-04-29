@@ -21,7 +21,7 @@
         <main>
             <div>
                 <h1>
-                    Choose your Quiz!
+                    Welcome to the homepage. Choose your Quiz!
                 </h1>
 
                 <p>

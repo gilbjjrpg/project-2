@@ -4,6 +4,7 @@ include '../data/database.php';
 
 // try to get the currently logged-in username from the cookie
 $currentUsername = $_COOKIE['username'] ?? null;
+$isGuest = ($currentUsername === "Guest");
 
 // this will hold the matched user's basic profile information
 $currentUser = null;
@@ -61,6 +62,12 @@ if ($currentUsername) {
         </header>
 
         <main>
+            <!-- Checks to see if the user is a guest first -->
+            <?php if ($isGuest): ?>
+                <h1>Welcome, Guest!</h1>
+                <p>You are playing as a guest, so your scores will not be saved!</p>
+            <?php elseif ($currentUser): ?>
+
             <!-- If the user was found in the database, show their dashboard -->
             <?php if ($currentUser): ?>
 
