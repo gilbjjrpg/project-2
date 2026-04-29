@@ -5,7 +5,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
 // This function controls behavior for the login page
 function setupLoginPage() {
-  
     // Get the login form, guest button, and error message box
     const loginForm = document.getElementById("loginForm");
     const guestBtn = document.getElementById("guestBtn");
@@ -40,8 +39,17 @@ function setupLoginPage() {
     if (guestBtn) {
         guestBtn.addEventListener("click", function () {
 
-            // Save a guest cookie so PHP pages can recognize guest users
+            // Username cookie is saved as "Guest"
+            // This allows for PHP pages to know the visitor is in guest mode
             document.cookie = "username=Guest; path=/";
+
+            // ALso store a guest user object in sessionStorage
+            // This helps quiz.js know that this user is a guest
+            sessionStorage.setItem("currentUser", JSON.stringify({
+            username: "Guest",
+            name: "Guest",
+            isGuest: true
+            }));
 
             // Redirect guest users to the dashboard page
             window.location.href = "dashboard.php";

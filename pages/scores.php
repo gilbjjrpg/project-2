@@ -61,8 +61,12 @@ if ($currentUsername) {
             <h1>Scores</h1>
             <p>Your scores!</p>
 
+            <?php if ($isGuest): ?>
+                <p>You are playing as a guest, so your scores will not be saved!</p>
+                <p>Consider signing up to keep track of your scores!</p>
+
             <!-- If a logged-in user exists, show their saved score history -->
-            <?php if ($currentUser): ?>
+            <?php elseif ($currentUser): ?>
 
                 <?php if (count($userScores) > 0): ?>
                     <table border="1">

@@ -4,6 +4,8 @@ include '../data/database.php';
 
 // try to get the currently logged-in username from the cookie
 $currentUsername = $_COOKIE['username'] ?? null;
+
+//Checks whether the visitor is a guest
 $isGuest = ($currentUsername === "Guest");
 
 // this will hold the matched user's basic profile information
@@ -12,8 +14,8 @@ $currentUser = null;
 // this will hold the user's quiz history from the scores table
 $playHistory = [];
 
-// only continue if a username cookie exists
-if ($currentUsername) {
+// only continue if a username cookie exists && user is not a guest
+if ($currentUsername && !$isGuest) {
 
     // prepare a query to get the user's basic information
     $userStmt = $db->prepare("
@@ -30,6 +32,7 @@ if ($currentUsername) {
 
     // if a matching user was found, get that user's score history
     if ($currentUser) {
+        
         // prepare a query to get all quiz scores for this user
         $scoreStmt = $db->prepare("
             SELECT quiz_type, score, date_taken
