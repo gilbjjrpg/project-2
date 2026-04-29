@@ -9,7 +9,7 @@ header('Content-Type: application/json');
 //read the JSON daata sent from quiz.js
 $data = json_decode(file_get_contents("php://input"), true);
 
-//make sure required values were sent
+//make sure all of the required values were sent
 if (
     !isset($data['username']) ||
     !isset($data['quizType']) ||
@@ -53,6 +53,7 @@ if (!$user) {
     exit;
 }
 
+//Pull out the matched user id
 $userId = $user['id'];
 
 //Insert the new score into the scores table

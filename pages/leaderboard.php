@@ -1,6 +1,14 @@
 <?php
+
+//Connect to the SQLite database
+//This file sts up the $db connection that this page will use.
 include '../data/database.php';
 
+
+//SQL query to build the leaderboard.
+// It joins the scores table to users table so we can show a person's name next to the saved score.
+
+//Only "10 Question" quiz scores count for the leaderboard.
 $sql = "
     SELECT users.name, scores.score, scores.date_taken
     FROM scores
@@ -10,7 +18,10 @@ $sql = "
     LIMIT 10
 ";
 
+// Runs the query
 $result = $db->query($sql);
+
+// Fetch all returned rows into a normal PHP array
 $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -38,6 +49,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                         <th>Date</th>
                     </tr>
 
+                    <!-- If the leaderboard rows exist, display them-->
                     <?php if (count($rows) > 0): ?>
                         <?php foreach ($rows as $row): ?>
                         <tr>
@@ -46,6 +58,8 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $row['date_taken']; ?></td>
                         </tr>
                         <?php endforeach; ?>
+
+                    <!-- Otherwise, show a fallback message-->
                     <?php else: ?>
                         <tr>
                             <td colspan="3">No leaderboard scores yet.</td>
