@@ -35,7 +35,7 @@ if(!$currentUsername) {
 }
 
 // If the user is a guest, do not save the score
-if($username === "Guest") {
+if($currentUsername === "Guest") {
     echo json_encode([
         "success" => false,
         "message" => "Guest scores are not saved!"
@@ -50,7 +50,7 @@ $dateTaken = $data['dateTaken'];
 
 //Find the matching user id in the users table
 $userStmt = $db->prepare("SELECT id FROM users WHERE username = ?");
-$userStmt->execute([$username]);
+$userStmt->execute([$currentUsername]);
 $user = $userStmt->fetch(PDO::FETCH_ASSOC);
 
 
