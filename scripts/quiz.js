@@ -309,6 +309,53 @@ function handleNextQuestion() {
     }
 }
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// SAVE QUIZ FUNCTIONAL
+
+async function saveQuizScore(scorePercent) {
+    // Get the currently logged-in user from sessionStorage
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+    // If no user is logged in, do not save anything
+    if (!currentUser || currentUser.isGuest) {
+        console.log("Guest user or no user logged in. Score will not be saved.");
+        return;
+    }
+
+    // Get the quiz settings so we know what type of quiz this was
+    const quizConfig = JSON.parse(sessionStorage.getItem("quizConfig"));
+
+    let quizType = "Custom";
+
+    if (quizConfig && quizConfig.countsForLeaderboard) {
+        quizType = "10 Question";
+    }
+
+    // Get today's date in YYYY-MM-DD format
+    const dateTaken = new Date().toISOString().split("T")[0];
+
+    try {
+        const response = await fetch("save_score.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: currentUser.username,
+                quizType: quizType,
+                score: scorePercent,
+                dateTaken: dateTaken
+            })
+        });
+
+        const result = await response.json();
+        console.log(result.message);
+    } catch (error) {
+        console.error("Error saving score:", error);
+    }
+}
+
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // RESULTS 
@@ -321,6 +368,9 @@ function showFinalScore() {
 
     //divides totalCorrect to the length of questions, multiplies it by 100 and rounds it to get the final score.
     const scorePercent = Math.round((totalCorrect / quizQuestions.length) * 100);
+
+    //Save the score to the SQL database
+    saveQuizScore(scorePercent);
 
     //replace the quiz area with the final results message
     quizContainer.innerHTML =
