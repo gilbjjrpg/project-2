@@ -66,10 +66,10 @@ if ($currentUsername) {
             <?php if ($isGuest): ?>
                 <h1>Welcome, Guest!</h1>
                 <p>You are playing as a guest, so your scores will not be saved!</p>
-            <?php elseif ($currentUser): ?>
+
 
             <!-- If the user was found in the database, show their dashboard -->
-            <?php if ($currentUser): ?>
+            <?php elseif ($currentUser): ?>
 
                 <!-- Show the user's name at the top -->
                 <h1>Welcome, <?php echo $currentUser['name']; ?>!</h1>
