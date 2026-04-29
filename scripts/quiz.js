@@ -1,5 +1,7 @@
 //waits for the page to fully load before running any code.
 window.addEventListener("DOMContentLoaded", function() {
+
+    //Decide which quiz page is currently open
     setupQuizMenuPage();
     setupQuizCustomizePage();
     setupQuizTimePage();
@@ -7,6 +9,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 // QUIZ MENU page 
 
+//Sets up the custom quiz page
 function setupQuizMenuPage() {
 
     // receives 10 question button from quiz.php
@@ -43,6 +46,7 @@ function setupQuizMenuPage() {
 
 // QUIZ CUSTOMIZE PAGE 
 
+//Sets up the custom quiz page
 function setupQuizCustomizePage() {
 
     // get the custome quiz from from quizCustomize.php
@@ -94,6 +98,7 @@ let totalCorrect = 0; //keeps track of total correct questions
 let selectedAnswer = null; //stores the selected answer the user chose for current question
 let quizConfig = null; //stores the quiz settings loaded from sessionStorage
 
+//Sets up the live quiz page
 async function setupQuizTimePage() {
 
     //questionText = gets the area from quizTime.php where the question text will be displayed
@@ -196,6 +201,7 @@ function shuffleArray(array){
 
 // QUESTION GENERATOR 
 
+//Takes questions and amount the user has input to shuffle in an array and return
 function generateQuizQuestions(questions, amount) {
 
     //shuffle all avaiable questions FIRST
@@ -209,7 +215,7 @@ function generateQuizQuestions(questions, amount) {
 
 // QUESTION & ANSWER OPTIONS DISPLAYER 
 
-
+//Displays the current question and answer choices
 function displayQuestion() {
 
     //questionText = receives the question text area
@@ -250,6 +256,8 @@ function displayQuestion() {
 
 // SET UP FOR ANSWER BUTTONS TO MAKE THEM FUNCTIONAL
 
+
+//Adds click behavior to answer buttons
 function setupAnswerButtons() {
 
     //receives the answer buttons from quizTime.php
@@ -279,6 +287,7 @@ function setupAnswerButtons() {
 
 // NEXT QUESTION HANDLER
 
+//Checks the slected answer and updates score/progress
 function handleNextQuestion() {
 
     //if the user has not selected an answer yet, show an alert and stop
@@ -313,21 +322,15 @@ function handleNextQuestion() {
 
 // SAVE QUIZ FUNCTIONAL
 
+//Sends the finished quiz result to the save_score.php
 async function saveQuizScore(scorePercent) {
-    // Get the currently logged-in user from sessionStorage
-    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-
-    // If no user is logged in, do not save anything
-    if (!currentUser || currentUser.isGuest) {
-        console.log("Guest user or no user logged in. Score will not be saved.");
-        return;
-    }
 
     // Get the quiz settings so we know what type of quiz this was
     const quizConfig = JSON.parse(sessionStorage.getItem("quizConfig"));
 
     let quizType = "Custom";
 
+    // Standard 10-question quiz counts for leaderboard
     if (quizConfig && quizConfig.countsForLeaderboard) {
         quizType = "10 Question";
     }

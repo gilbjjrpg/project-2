@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <?php 
-// This page is used ONLY for navigation.
+// This page is the quiz menu page that doubles as the homepage.
+// The quiz is not actually ran here
+// User can select to do a 10-question quiz or a custom quiz
 ?>
 
 <html lang="en">

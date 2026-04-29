@@ -1,3 +1,8 @@
+<?php
+// This is the main live quiz page
+// JS fills the question text, answers, and score flows here.
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

@@ -1,3 +1,8 @@
+<?php
+// This page lets the user choose custome quiz settings.
+// The user's choices will be saved and then used by quizTime.php
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,7 +48,7 @@
     <footer>
         <?php include '../layout/footer.php' ?>
     </footer>
-    
+
     </body>
 
 </html>

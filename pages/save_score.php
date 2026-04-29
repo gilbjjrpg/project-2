@@ -9,25 +9,30 @@ header('Content-Type: application/json');
 //read the JSON daata sent from quiz.js
 $data = json_decode(file_get_contents("php://input"), true);
 
-//make sure all of the required values were sent
-if (
-    !isset($data['username']) ||
+//Only require quiz info from JS
+if(
     !isset($data['quizType']) ||
     !isset($data['score']) ||
     !isset($data['dateTaken'])
 ) {
-    echo json_encode([
+    echo json_encode ([
         "success" => false,
         "message" => "Missing required data."
     ]);
     exit;
 }
 
-// Pull the submitted values into variables
-$username = $data['username'];
-$quizType = $data['quizType'];
-$score = (int)$data['score'];
-$dateTaken = $data['dateTaken'];
+// Get the logged-in username from the cookie inster of sessionStorage
+$currentUsername = $_COOKIE['username'] ?? null;
+
+//If no cookie exists, stop
+if(!$currentUsername) {
+    echo json_encode([
+        "success" => false,
+        "message" => "No logged-in user found."
+    ]);
+    exit;
+}
 
 // If the user is a guest, do not save the score
 if($username === "Guest") {
@@ -37,6 +42,11 @@ if($username === "Guest") {
     ]);
     exit;
 }
+
+//Pull the submitted values into variables
+$quizType = $data['quizType'];
+$score = (int)$data['score'];
+$dateTaken = $data['dateTaken'];
 
 //Find the matching user id in the users table
 $userStmt = $db->prepare("SELECT id FROM users WHERE username = ?");
