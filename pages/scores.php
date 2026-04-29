@@ -8,7 +8,7 @@
 
     <body>
         <header>
-            <?php include '../layout/header.php' ?>
+            <?php include '../layout/header.php'; ?>
         </header>
 
         <main>
@@ -17,7 +17,7 @@
         </main>
 
         <footer>
-            <?php include '../layout.footer.php' ?>
+           <?php include '../layout/footer.php'; ?>
         </footer>
 
     </body>
