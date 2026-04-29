@@ -345,7 +345,6 @@ async function saveQuizScore(scorePercent) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username: currentUser.username,
                 quizType: quizType,
                 score: scorePercent,
                 dateTaken: dateTaken
