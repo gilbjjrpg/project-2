@@ -5,6 +5,9 @@ include '../data/database.php';
 // Try to get the currently logged-in username from the cookie
 $currentUsername = $_COOKIE['username'] ?? null;
 
+//Checks whether the visitor is a guest
+$isGuest = ($currentUsername === "Guest");
+
 // This will hold the matched user's basic info
 $currentUser = null;
 
@@ -12,7 +15,8 @@ $currentUser = null;
 $userScores = [];
 
 // Only continue if a username cookie exists
-if ($currentUsername) {
+if ($currentUsername && !$isGuest) {
+
     // Find the logged-in user in the users table
     $userStmt = $db->prepare("
         SELECT id, name, username, email
