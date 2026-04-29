@@ -1,90 +1,46 @@
-// Wait until the HTML page is fully loaded before running any login code
+// Wait until the page is fully loaded before running any login code
 window.addEventListener("DOMContentLoaded", function () {
     setupLoginPage();
 });
 
-// This function controls the behavior for the login page only
-
+// This function controls behavior for the login page
 function setupLoginPage() {
   
-    // Get the main login form, guest button, and error message box from the page
+    // Get the login form, guest button, and error message box
     const loginForm = document.getElementById("loginForm");
     const guestBtn = document.getElementById("guestBtn");
     const errorMessage = document.getElementById("errorMessage");
 
-    // If this page does not have the login form or error box,
-    // stop here so this file does not break on other pages
+    // Stop if this is not the login page
     if (!loginForm || !errorMessage) {
         return;
     }
 
-    // Listen for the user submitting the login form
-    loginForm.addEventListener("submit", async function (event) {
-
-        // Stop the form from refreshing the page automatically
-        // We want JavaScript to check the login first
-        event.preventDefault();
-
-        // Get whatever the user typed into the login fields
+    // Front-end validation for the normal login form
+    loginForm.addEventListener("submit", function (event) {
+      
+        // Get the values from the login fields
         const loginIdentifier = document.getElementById("loginIdentifier").value.trim();
         const loginPassword = document.getElementById("loginPassword").value.trim();
 
-        // Clear any previous error message before doing a new check
+        // Clear old error styling/message first
         errorMessage.textContent = "";
         errorMessage.classList.add("hidden");
 
-        // Basic validation:
-        // If either field is empty, show an error and stop
+        // If either field is empty, stop the form and show an error
         if (loginIdentifier === "" || loginPassword === "") {
+            event.preventDefault();
             showError("Please enter both your username/email and password.");
-            return;
         }
 
-        try {
-            // Load the users.json file
-            const response = await fetch("../data/users.json");
-            const users = await response.json();
-
-            // Look for a user whose username OR email matches,
-            // and whose password also matches
-            const matchedUser = users.find(function (user) {
-                return (
-                    (user.username === loginIdentifier || user.email === loginIdentifier) &&
-                    user.password === loginPassword
-                );
-            });
-
-            // If a user match was found, login is successful
-            if (matchedUser) {
-                // Store the username in a cookie so dashboard.php can read it
-                document.cookie =
-                    "username=" + encodeURIComponent(matchedUser.username) + "; path=/";
-
-                // Also store the full user object in sessionStorage
-                // This is optional, but useful if other JS pages need quick access to the user
-                sessionStorage.setItem("currentUser", JSON.stringify(matchedUser));
-
-                // Send the user to the dashboard page
-                window.location.href = "dashboard.php";
-            } else {
-                // No match found, so login failed
-                showError("Invalid username/email or password.");
-            }
-        } catch (error) {
-
-            // If something goes wrong loading the JSON file,
-            // show an error on the page and log the real error in the console
-            console.error("Login error:", error);
-            showError("Could not load user data.");
-        }
+        // If both fields are filled in, let the form submit normally to PHP
     });
 
-    // If the page has a guest button, give it guest login behavior
+    // Guest button behavior
     if (guestBtn) {
         guestBtn.addEventListener("click", function () {
 
-            // Store "Guest" as the username cookie
-            // This lets the next page know the user entered as a guest
+            // Save a guest cookie so PHP pages can recognize guest users
             document.cookie = "username=Guest; path=/";
 
             // Redirect guest users to the dashboard page
@@ -92,8 +48,7 @@ function setupLoginPage() {
         });
     }
 
-    // Helper function:
-    // Shows an error message inside the error box on the page
+    // Helper function for showing an error message
     function showError(message) {
         errorMessage.textContent = message;
         errorMessage.classList.remove("hidden");

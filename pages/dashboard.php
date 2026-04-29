@@ -95,7 +95,7 @@ if ($currentUsername) {
 
                 <!-- If there are no saved quiz scores yet, show a fallback message -->
                 <?php else: ?>
-                    <p>No quiz history yet.</p>
+                    <p>No quiz history yet. Play a quiz or sign up to get your history started!</p>
                 <?php endif; ?>
 
             <!-- If no matching logged-in user was found, show this message -->

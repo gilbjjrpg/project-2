@@ -1,78 +1,88 @@
 <?php
-session_start();
+// Connect to the SQLite database
+include '../data/database.php';
 
-$usersFile = "../data/users.json";
-$usersJson = file_get_contents($usersFile);
-$users = json_decode($usersJson, true);
-
+// This will hold any login error message
 $errorMessage = "";
 
+// Check whether the login form was submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $loginIdentifier = $_POST["loginIdentifier"] ?? "";
-    $loginPassword = $_POST["loginPassword"] ?? "";
 
-    $matchedUser = null;
+    // Get the entered username/email and password from the form
+    $loginIdentifier = trim($_POST["loginIdentifier"] ?? "");
+    $loginPassword = trim($_POST["loginPassword"] ?? "");
 
-    foreach ($users as $user) {
-        if (
-            ($user["username"] === $loginIdentifier || $user["email"] === $loginIdentifier) &&
-            $user["password"] === $loginPassword
-        ) {
-            $matchedUser = $user;
-            break;
+    // Only continue if both fields were filled in
+    if ($loginIdentifier !== "" && $loginPassword !== "") {
+
+        // Prepare a query to find a user whose username OR email matches
+        $stmt = $db->prepare("
+            SELECT id, username, name, email, password, is_guest
+            FROM users
+            WHERE username = ? OR email = ?
+        ");
+
+        // Run the query using the entered login identifier twice
+        $stmt->execute([$loginIdentifier, $loginIdentifier]);
+
+        // Fetch the matching user row
+        $matchedUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // If a user was found and the password matches, log them in
+        if ($matchedUser && $matchedUser["password"] === $loginPassword) {
+          
+            // Store the username in a cookie so other PHP pages can identify the user
+            setcookie("username", $matchedUser["username"], time() + 86400, "/");
+
+            // Redirect to the dashboard page
+            header("Location: dashboard.php");
+            exit;
+        } else {
+            // Show an error if login failed
+            $errorMessage = "Invalid username/email or password.";
         }
-    }
-
-    if ($matchedUser) {
-        $_SESSION["username"] = $matchedUser["username"];
-        header("Location: dashboard.php");
-        exit;
     } else {
-        $errorMessage = "Invalid username/email or password.";
+        // Show an error if fields were left blank
+        $errorMessage = "Please enter both your username/email and password.";
     }
 }
-
-// ----> THIS IS THE LOGIN/REGISTER PAGE. DO NOT CHANGE. <----
-
-/*
-      Test accounts you could use:
-       Username: josh722 | Password: test123
-       Username: amy1287 | Password: hello456
-       Username: mike1202 | Password: quiz789
-*/
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizberry! Login</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="../scripts/login.js" defer></script>
+  </head>
 
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quizberry! Login</title>
-  <link rel="stylesheet" href="../style/style.css">
-  <script src="../scripts/login.js" defer></script>
+  <body>
+    <div class="login-page-wrapper">
+        <div class="login-card">
+            <h1>Quizberry!</h1>
+            <p class="subtitle">Login, sign up later, or continue as a guest.</p>
 
-</head>
+            <!-- Login form now submits to PHP -->
+            <form id="loginForm" method="POST" action="">
+                <label for="loginIdentifier">Username or Email</label>
+                <input type="text" id="loginIdentifier" name="loginIdentifier" placeholder="Enter username or email">
 
-<body>
-  <div class="login-page-wrapper">
-    <div class="login-card">
-      <h1>Quizberry!</h1>
-      <p class="subtitle">Login, sign up later, or continue as a guest.</p>
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter password">
 
-      <form id="loginForm" method="POST" action="">
-        <label for="loginIdentifier">Username or Email</label>
-        <input type="text" id="loginIdentifier" name="loginIdentifier" placeholder="Enter username or email">
+                <!-- Show PHP login errors here -->
+                <div id="errorMessage" class="error-message <?php echo $errorMessage ? '' : 'hidden'; ?>">
+                    <?php echo $errorMessage; ?>
+                </div>
 
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter password">
-
-        <div id="errorMessage" class="error-message hidden"></div>
-
-        <button type="submit" class="primary-btn">Login</button>
-        <button type="button" id="guestBtn" class="secondary-btn">Continue as Guest</button>
-      </form>
-      
+                <button type="submit" class="primary-btn">Login</button>
+                <button type="button" id="guestBtn" class="secondary-btn">Continue as Guest</button>
+            </form>
+        </div>
     </div>
-  </div>
-</body>
+
+  </body>
+
 </html>

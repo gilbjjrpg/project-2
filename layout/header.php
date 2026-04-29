@@ -9,6 +9,11 @@
 
     <nav>
       <ul>
+
+        <li class="button">
+          <a href="../pages/quiz.php">Home</a>
+        </li>
+
         <li class="button">
           <a href="../pages/dashboard.php">Dashboard</a>
         </li>
@@ -18,14 +23,11 @@
         </li>
 
         <li class="button">
-          <a href="../pages/quiz.php">Quiz!</a>
-        </li>
-
-        <li class="button">
           <a href="../pages/scores.php">Scores</a>
         </li>
+
       </ul>
     </nav>
-    
+
   </div>
 </header>
