@@ -1,93 +1,111 @@
 <?php
+// connect to the SQLite database
+include '../data/database.php';
 
-$usersFile = "../data/users.json";
-$usersJson = file_get_contents($usersFile);
-$users = json_decode($usersJson, true);
-
+// try to get the currently logged-in username from the cookie
 $currentUsername = $_COOKIE['username'] ?? null;
+
+// this will hold the matched user's basic profile information
 $currentUser = null;
 
-if ($currentUsername) {
-    foreach ($users as $user) {
-        if (!isset($user['username'])) {
-            continue;
-        }
+// this will hold the user's quiz history from the scores table
+$playHistory = [];
 
-        if ($user['username'] === $currentUsername) {
-            $currentUser = $user;
-            break;
-        }
+// only continue if a username cookie exists
+if ($currentUsername) {
+
+    // prepare a query to get the user's basic information
+    $userStmt = $db->prepare("
+        SELECT id, name, username, email
+        FROM users
+        WHERE username = ?
+    ");
+
+    // run the query using the username from the cookie
+    $userStmt->execute([$currentUsername]);
+
+    // fetch the matching user as an associative array
+    $currentUser = $userStmt->fetch(PDO::FETCH_ASSOC);
+
+    // if a matching user was found, get that user's score history
+    if ($currentUser) {
+        // prepare a query to get all quiz scores for this user
+        $scoreStmt = $db->prepare("
+            SELECT quiz_type, score, date_taken
+            FROM scores
+            WHERE user_id = ?
+            ORDER BY date_taken DESC, id DESC
+        ");
+
+        // run the score query using the user's id
+        $scoreStmt->execute([$currentUser['id']]);
+
+        // fetch all score rows into the playHistory array
+        $playHistory = $scoreStmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-
-if ($currentUser) {
-    $name = $currentUser['name'];
-    $username = $currentUser['username'];
-    $email = $currentUser['email'];
-    $playHistory = $currentUser['playHistory'];
-}
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-            <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
-            <link rel="stylesheet" href="../style/style.css">
-            <title>Your dashboard — Quizberry!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../style/style.css">
+        <title>Your dashboard — Quizberry!</title>
     </head>
 
     <body>
         <header>
+            
             <?php include '../layout/header.php'; ?>
         </header>
 
-        <main class="dashboard-container">
-
+        <main>
+            <!-- If the user was found in the database, show their dashboard -->
             <?php if ($currentUser): ?>
-                <h1>Welcome, <?php echo $name; ?>!</h1>
+
+                <!-- Show the user's name at the top -->
+                <h1>Welcome, <?php echo $currentUser['name']; ?>!</h1>
+
                 <h2>Your Dashboard</h2>
-                <p>Username: <?php echo $username; ?></p>
-                <p>Email: <?php echo $email; ?></p>
+
+                <p>Username: <?php echo $currentUser['username']; ?></p>
+                <p>Email: <?php echo $currentUser['email']; ?></p>
 
                 <h2>Play History</h2>
 
+                <!-- If the user has any saved quiz scores, show them in a table -->
                 <?php if (count($playHistory) > 0): ?>
-                
                     <table border="1">
-
                         <tr>
                             <th>Quiz Type</th>
                             <th>Score</th>
                             <th>Date</th>
                         </tr>
 
+                        <!-- Loop through each saved quiz result -->
                         <?php foreach ($playHistory as $quiz): ?>
-
                             <tr>
-                                <td><?php echo $quiz['quizType']; ?></td>
+                                <td><?php echo $quiz['quiz_type']; ?></td>
                                 <td><?php echo $quiz['score']; ?>%</td>
-                                <td><?php echo $quiz['date']; ?></td>
+                                <td><?php echo $quiz['date_taken']; ?></td>
                             </tr>
-
                         <?php endforeach; ?>
-
                     </table>
 
+                <!-- If there are no saved quiz scores yet, show a fallback message -->
                 <?php else: ?>
-                    <p>No quiz history yet. Play a quiz or sign up to get your history started!</p>
+                    <p>No quiz history yet.</p>
                 <?php endif; ?>
 
+            <!-- If no matching logged-in user was found, show this message -->
             <?php else: ?>
                 <p>No user is currently logged in.</p>
             <?php endif; ?>
-
         </main>
 
         <footer>
             <?php include '../layout/footer.php'; ?>
         </footer>
-        
     </body>
-
 </html>
