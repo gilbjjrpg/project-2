@@ -79,6 +79,8 @@ function initializeDatabase($db) {
         }
 
         //Insert the user into the users table
+        $hashedPassword = password_hash($user['password'], PASSWORD_DEFAULT);
+
         $stmt = $db->prepare("
             INSERT INTO users (id, username, name, email, password, is_guest)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -89,7 +91,7 @@ function initializeDatabase($db) {
             $user['username'],
             $user['name'],
             $user['email'],
-            $user['password'],
+            $hashedPassword,
             $user['isGuest'] ? 1 : 0
         ]);
 

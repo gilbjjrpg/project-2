@@ -10,7 +10,7 @@ function setupLoginPage() {
     const loginForm = document.getElementById("loginForm");
     const signupForm = document.getElementById("signupForm");
     const showLoginBtn = document.getElementById("showLoginBtn");
-    const showSignupBtn = document.getElementsById("showSignupBtn");
+    const showSignupBtn = document.getElementById("showSignupBtn");
     const guestBtn = document.getElementById("guestBtn");
     const errorMessage = document.getElementById("errorMessage");
 
@@ -59,7 +59,7 @@ function setupLoginPage() {
 
     // Handle signup form submission
 
-    signupForm.addEventListener("subtmit", function(event) {
+    signupForm.addEventListener("submit", function(event) {
       const signupName = document.getElementById("signupName").value.trim();
       const signupUsername = document.getElementById("signupUsername").value.trim();
       const signupEmail = document.getElementById("signupEmail").value.trim();

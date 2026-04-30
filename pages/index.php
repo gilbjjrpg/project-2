@@ -38,7 +38,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $matchedUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // If a user was found and the password matches, log them in
-        if ($matchedUser && $matchedUser["password"] === $loginPassword) {
+        $passwordMatches = false;
+
+        if ($matchedUser) {
+            $passwordMatches = password_verify($loginPassword, $matchedUser["password"]);
+
+            // Upgrade older plain-text passwords to hashed passwords after login.
+            if (!$passwordMatches && hash_equals($matchedUser["password"], $loginPassword)) {
+                $passwordMatches = true;
+                $newHashedPassword = password_hash($loginPassword, PASSWORD_DEFAULT);
+                $updatePasswordStmt = $db->prepare("UPDATE users SET password = ? WHERE id = ?");
+                $updatePasswordStmt->execute([$newHashedPassword, $matchedUser["id"]]);
+            }
+        }
+
+        if ($matchedUser && $passwordMatches) {
 
             // Store the username in a cookie so other PHP pages can identify the user
             setcookie("username", $matchedUser["username"], time() + 86400, "/");
@@ -105,12 +119,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           VALUES (?, ?, ?, ?, 0)
         ");
 
+        $hashedPassword = password_hash($signupPassword, PASSWORD_DEFAULT);
+
         $insertStmt->execute([
           $signupUsername,
           $signupName,
           $signupEmail,
-          $signupPassword
+          $hashedPassword
         ]);
+
 
         //Log the new user in immediately after signup
         setcookie("username", $signupUsername, time() + 86400, "/");

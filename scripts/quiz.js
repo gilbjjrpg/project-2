@@ -250,6 +250,11 @@ function displayQuestion() {
 
     //resets selected answer for each new questions
     selectedAnswer = null;
+
+    answerButtons.forEach(function (button) {
+        button.classList.remove("selected");
+    });
+
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
