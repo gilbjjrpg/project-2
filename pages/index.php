@@ -59,6 +59,68 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   //-------------------------------------------------------------
   // SIGNUP FORM LOGIC
   //-------------------------------------------------------------
+  if ($formType === "signup") {
+    
+    //Get the signup form values
+    $signupName = trim($_POST["signupName"] ?? "");
+    $signupUsername = trim($_POST["signupUsername"] ?? "");
+    $signupEmail = trim($_POST["signupEmail"] ?? "");
+    $signupPassword = trim($_POST["signupPassword"] ?? "");
+    $confirmPassword = trim($_POST["confirmPassword"] ?? "");
+
+    //Make sure all fields were filled in
+    if (
+      $signupName === "" ||
+      $signupUsername === "" ||
+      $signupEmail === "" ||
+      $signupPassword === "" ||
+      $confirmPassword === "" 
+    ) {
+      $errorMessage = "Please fill in all signup fields!";
+    }
+
+    //Make sure the passwords match 
+    elseif ($signupPassword !== $confirmPassword) {
+      $errorMessage = "Passwords do not match!";
+    }
+
+    //Make sure the username is not already taken 
+    else {
+      $usernameCheck = $db->prepare("SELECT id FROM users WHERE username = ?");
+      $usernameCheck->execute([$signupUsername]);
+      $existingUsername = $usernameCheck->fetch(PDO::FETCH_ASSOC);
+
+      $emailCheck = $db->prepare("SELECT id FROM users WHERE email = ?");
+      $emailCheck->execute([$signupEmail]);
+      $existingEmail = $emailCheck->fetch(PDO::FETCH_ASSOC);
+
+      if ($existingUsername) {
+        $errorMessage = "That usernaeme is already taken!";
+      } elseif ($existingEmail) {
+        $errorMessage = "The email is already in use!";
+      } else {
+        //Insert the new user into the users table
+        $insertStmt = $db->prepare("
+          INSERT INTO users (username, name, emial, password, is_guest)
+          VALUES (?, ?, ?, ?, 0)
+        ");
+
+        $insertStmt->execute([
+          $signupUsername,
+          $signupName,
+          $signupEmail,
+          $signupPassword
+        ]);
+
+        //Log the new user in immediately after signup
+        setcookie("username", $signupUsername, time() + 86400, "/");
+
+        //Redirect to the Dashboard
+        header("Location: dashboard.php");
+        exit;
+      }
+    }
+  }
 }
 ?>
 
@@ -76,7 +138,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="login-page-wrapper">
         <div class="login-card">
             <h1>Quizberry!</h1>
-            <p class="subtitle">Login, sign up later, or continue as a guest.</p>
+            <p class="subtitle">Login, sign up, or continue as a guest.</p>
+
+            <!-- Shared message area -->
+            <div id="errorMessage" class="error-message <?php echo ($errorMessage || $successMessage) ? '' : 'hidden'; ?>">
+              <?php
+                if ($errorMessage) {
+                  echo $errorMessage;
+                } elseif ($errorMessage) {
+                  echo $successMessage;
+                }
+              ?>
+            </div>
 
             <!-- Login form now submits to PHP -->
             <form id="loginForm" method="POST" action="">
