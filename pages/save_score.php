@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-//Connect tot he SQLite database
+//Connect to the configured database
 include '../data/database.php';
 
 // Tell JS that this file returns JSON
 header('Content-Type: application/json');
 
-//read the JSON daata sent from quiz.js
+//read the JSON data sent from quiz.js
 $data = json_decode(file_get_contents("php://input"), true);
 
 //Only require quiz info from JS
@@ -27,7 +27,7 @@ if(
 $currentUsername = $_SESSION['username'] ?? null;
 $isGuest = !empty($_SESSION['isGuest']);
 
-//If no cookie exists, stop
+//If no session exists, stop
 if(!$currentUsername) {
     echo json_encode([
         "success" => false,
@@ -48,6 +48,8 @@ if($isGuest) {
 //Pull the submitted values into variables
 $quizType = $data['quizType'];
 $score = (int)$data['score'];
+$questionCount = isset($data['questionCount']) ? (int)$data['questionCount'] : null;
+$totalTime = isset($data['totalTime']) ? (int)$data['totalTime'] : null;
 $dateTaken = $data['dateTaken'];
 
 //Find the matching user id in the users table
@@ -70,13 +72,13 @@ $userId = $user['id'];
 
 //Insert the new score into the scores table
 $scoreStmt = $db->prepare("
-    INSERT INTO scores (user_id, quiz_type, score, date_taken)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO scores (user_id, quiz_type, score, question_count, total_time, date_taken)
+    VALUES (?, ?, ?, ?, ?, ?)
 ");
 
-$scoreStmt->execute([$userId, $quizType, $score, $dateTaken]);
+$scoreStmt->execute([$userId, $quizType, $score, $questionCount, $totalTime, $dateTaken]);
 
-//Send a success responce back to JS
+//Send a success response back to JS
 echo json_encode([
     "success" => true,
     "message" => "Score saved successfully."

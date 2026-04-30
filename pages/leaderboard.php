@@ -1,20 +1,16 @@
 <?php
 
-//Connect to the SQLite database
-//This file sts up the $db connection that this page will use.
+//Connect to the configured database
+//This file sets up the $db connection that this page will use.
 include '../data/database.php';
 
 
 //SQL query to build the leaderboard.
-// It joins the scores table to users table so we can show a person's name next to the saved score.
-
-//Only "10 Question" quiz scores count for the leaderboard.
+//The leaderboard view already includes only "10 Question" quiz scores.
 $sql = "
-    SELECT users.name, scores.score, scores.date_taken
-    FROM scores
-    JOIN users ON scores.user_id = users.id
-    WHERE scores.quiz_type = '10 Question'
-    ORDER BY scores.score DESC, scores.date_taken ASC
+    SELECT name, score, total_time, date_taken
+    FROM leaderboard
+    ORDER BY score DESC, date_taken ASC
     LIMIT 10
 ";
 
@@ -46,6 +42,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                     <tr>
                         <th>Name</th>
                         <th>Score</th>
+                        <th>Total Time</th>
                         <th>Date</th>
                     </tr>
 
@@ -55,6 +52,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($row['score'], ENT_QUOTES, 'UTF-8'); ?>%</td>
+                            <td><?php echo htmlspecialchars($row['total_time'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?><?php echo isset($row['total_time']) ? 's' : ''; ?></td>
                             <td><?php echo htmlspecialchars($row['date_taken'], ENT_QUOTES, 'UTF-8'); ?></td>
                         </tr>
                         <?php endforeach; ?>
@@ -62,7 +60,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                     <!-- Otherwise, show a fallback message-->
                     <?php else: ?>
                         <tr>
-                            <td colspan="3">No leaderboard scores yet.</td>
+                            <td colspan="4">No leaderboard scores yet.</td>
                         </tr>
                     <?php endif; ?>
 

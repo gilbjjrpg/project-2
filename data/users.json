@@ -15,11 +15,15 @@
       {
         "quizType": "10 Question",
         "score": 80,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-10"
       },
       {
         "quizType": "Custom",
         "score": 70,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-12"
       }
     ]
@@ -35,6 +39,8 @@
       {
         "quizType": "10 Question",
         "score": 90,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-14"
       }
     ]
@@ -59,16 +65,22 @@
       {
         "quizType": "10 Question",
         "score": 90,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-10"
       },
       {
         "quizType": "Custom",
         "score": 70,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-12"
       },
       {
         "quizType": "Custom",
         "score": 60,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-20"
       }
     ]
@@ -84,11 +96,15 @@
       {
         "quizType": "10 Question",
         "score": 20,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-12"
       },
       {
         "quizType": "Custom",
         "score": 100,
+        "questionCount": 10,
+        "totalTime": 600,
         "date": "2026-04-12"
       }
     ]

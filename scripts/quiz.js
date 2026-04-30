@@ -99,6 +99,7 @@ let selectedAnswer = null; //stores the selected answer the user chose for curre
 let quizConfig = null; //stores the quiz settings loaded from sessionStorage
 let timerInterval = null; //stores the active timer interval so it can be stopped/reset
 let timeLeft = 0; //stores how many seconds are left for the current question
+let quizStartTime = null; //stores when the quiz started so total time can be saved
 
 //Sets up the live quiz page
 async function setupQuizTimePage() {
@@ -169,6 +170,9 @@ async function setupQuizTimePage() {
 
     //makes the answer buttons clickable
     setupAnswerButtons(); 
+
+    //starts tracking total time for the whole quiz
+    quizStartTime = Date.now();
 
     //displays the first question on the page
     displayQuestion();
@@ -426,6 +430,12 @@ async function saveQuizScore(scorePercent) {
     // Get today's date in YYYY-MM-DD format
     const dateTaken = new Date().toISOString().split("T")[0];
 
+    // Get the actual number of questions used in this quiz
+    const questionCount = quizQuestions.length;
+
+    // Get total time in seconds from quiz start to quiz finish
+    const totalTime = Math.round((Date.now() - quizStartTime) / 1000);
+
     try {
         const response = await fetch("save_score.php", {
             method: "POST",
@@ -435,6 +445,8 @@ async function saveQuizScore(scorePercent) {
             body: JSON.stringify({
                 quizType: quizType,
                 score: scorePercent,
+                questionCount: questionCount,
+                totalTime: totalTime,
                 dateTaken: dateTaken
             })
         });

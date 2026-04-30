@@ -43,10 +43,14 @@ try {
  *  This function:
  * 1. Creates the users table if needed
  * 2. Creates the scores table if needed
- * 3. Seeds starter data from users.json only if the users table is empty
+ * 3. Creates the leaderboard view if needed
+ * 4. Seeds starter data from users.json only if the users table is empty
  */
 function initializeDatabase($db, $dbDriver) {
     createTables($db, $dbDriver);
+    addMissingScoreColumns($db, $dbDriver);
+    backfillExistingScoreData($db);
+    createLeaderboardView($db);
     seedStarterDataIfNeeded($db);
 }
 
@@ -72,6 +76,8 @@ function createTables($db, $dbDriver) {
                 user_id INT NOT NULL,
                 quiz_type VARCHAR(100) NOT NULL,
                 score INT NOT NULL,
+                question_count INT NULL,
+                total_time INT NULL,
                 date_taken DATE NOT NULL,
                 FOREIGN KEY (user_id) REFERENCES users(id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
@@ -96,11 +102,83 @@ function createTables($db, $dbDriver) {
                 user_id INTEGER NOT NULL,
                 quiz_type TEXT NOT NULL,
                 score INTEGER NOT NULL,
+                question_count INTEGER,
+                total_time INTEGER,
                 date_taken TEXT NOT NULL,
                 FOREIGN KEY (user_id) REFERENCES users(id)
             )
         ");
     }
+}
+
+//Adds new score columns to older databases that were created before these fields existed.
+function addMissingScoreColumns($db, $dbDriver) {
+    $scoreColumns = getScoreColumns($db, $dbDriver);
+
+    if (!in_array("question_count", $scoreColumns)) {
+        $columnType = ($dbDriver === "mysql") ? "INT NULL" : "INTEGER";
+        $db->exec("ALTER TABLE scores ADD COLUMN question_count $columnType");
+    }
+
+    if (!in_array("total_time", $scoreColumns)) {
+        $columnType = ($dbDriver === "mysql") ? "INT NULL" : "INTEGER";
+        $db->exec("ALTER TABLE scores ADD COLUMN total_time $columnType");
+    }
+}
+
+//Gets the current column names from the scores table.
+function getScoreColumns($db, $dbDriver) {
+    $columns = [];
+
+    if ($dbDriver === "mysql") {
+        $columnResult = $db->query("SHOW COLUMNS FROM scores");
+
+        foreach ($columnResult->fetchAll() as $column) {
+            $columns[] = $column['Field'];
+        }
+    } else {
+        $columnResult = $db->query("PRAGMA table_info(scores)");
+
+        foreach ($columnResult->fetchAll() as $column) {
+            $columns[] = $column['name'];
+        }
+    }
+
+    return $columns;
+}
+
+//Fills older score rows with default question/time values if they were created before these fields existed.
+function backfillExistingScoreData($db) {
+    $db->exec("
+        UPDATE scores
+        SET question_count = 10
+        WHERE question_count IS NULL
+    ");
+
+    $db->exec("
+        UPDATE scores
+        SET total_time = 600
+        WHERE total_time IS NULL
+    ");
+}
+
+//Creates the leaderboard view from the scores table.
+//A view acts like a table, but its rows are generated from the latest score data.
+function createLeaderboardView($db) {
+    //Drop the view first so changes to the selected columns are applied.
+    $db->exec("DROP VIEW IF EXISTS leaderboard");
+
+    $db->exec("
+        CREATE VIEW leaderboard AS
+        SELECT
+            users.name,
+            scores.score,
+            scores.total_time,
+            scores.date_taken
+        FROM scores
+        JOIN users ON scores.user_id = users.id
+        WHERE scores.quiz_type = '10 Question'
+    ");
 }
 
 //Seeds starter/demo user data from users.json only when the users table is empty.
@@ -153,15 +231,20 @@ function seedStarterData($db) {
         //If the user has play history, move each score into the scores table.
         if (!empty($user['playHistory'])) {
             foreach ($user['playHistory'] as $quiz) {
+                $questionCount = $quiz['questionCount'] ?? 10;
+                $totalTime = $quiz['totalTime'] ?? 600;
+
                 $scoreStmt = $db->prepare("
-                    INSERT INTO scores (user_id, quiz_type, score, date_taken)
-                    VALUES (?, ?, ?, ?)
+                    INSERT INTO scores (user_id, quiz_type, score, question_count, total_time, date_taken)
+                    VALUES (?, ?, ?, ?, ?, ?)
                 ");
 
                 $scoreStmt->execute([
                     $user['id'],
                     $quiz['quizType'],
                     $quiz['score'],
+                    $questionCount,
+                    $totalTime,
                     $quiz['date']
                 ]);
             }

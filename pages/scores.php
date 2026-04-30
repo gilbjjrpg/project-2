@@ -35,7 +35,7 @@ if ($currentUsername && !$isGuest) {
     // If the user exists, load all their scores
     if ($currentUser) {
         $scoreStmt = $db->prepare("
-            SELECT quiz_type, score, date_taken
+            SELECT quiz_type, score, question_count, total_time, date_taken
             FROM scores
             WHERE user_id = ?
             ORDER BY date_taken DESC, id DESC
@@ -79,6 +79,8 @@ if ($currentUsername && !$isGuest) {
                         <tr>
                             <th>Quiz Type</th>
                             <th>Score</th>
+                            <th>Questions</th>
+                            <th>Total Time</th>
                             <th>Date</th>
                         </tr>
 
@@ -87,6 +89,8 @@ if ($currentUsername && !$isGuest) {
                             <tr>
                                 <td><?php echo htmlspecialchars($score['quiz_type'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($score['score'], ENT_QUOTES, 'UTF-8'); ?>%</td>
+                                <td><?php echo htmlspecialchars($score['question_count'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($score['total_time'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?><?php echo isset($score['total_time']) ? 's' : ''; ?></td>
                                 <td><?php echo htmlspecialchars($score['date_taken'], ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php endforeach; ?>
