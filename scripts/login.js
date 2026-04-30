@@ -6,14 +6,35 @@ window.addEventListener("DOMContentLoaded", function () {
 // This function controls behavior for the login page
 function setupLoginPage() {
 
-    // Get the login form, guest button, and error message box
+    // Get the login form & button , signup form & button, guest button, and error message box
     const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const showLoginBtn = document.getElementById("showLoginBtn");
+    const showSignupBtn = document.getElementsById("showSignupBtn");
     const guestBtn = document.getElementById("guestBtn");
     const errorMessage = document.getElementById("errorMessage");
 
     // Stop if this is not the login page
-    if (!loginForm || !errorMessage) {
+    if (!loginForm || !signupForm || !errorMessage) {
         return;
+    }
+
+    //Show signup form
+    if(showSignupBtn) {
+      showSignupBtn.addEventListener("click", function() {
+        loginForm.classList.add("hidden");
+        signupForm.classList.remove("hidden");
+        showError("");
+      });
+    }
+
+    //Show login form
+    if(showLoginBtn) {
+      showLoginBtn.addEventListener("click", function() {
+        loginForm.classList.remove("hidden");
+        signupForm.classList.add("hidden");
+        showError("");
+      });
     }
 
     // Handle normal login form submission
@@ -34,6 +55,37 @@ function setupLoginPage() {
         }
 
         // If both fields are filled in, let the form submit normally to PHP
+    });
+
+    // Handle signup form submission
+
+    signupForm.addEventListener("subtmit", function(event) {
+      const signupName = document.getElementById("signupName").value.trim();
+      const signupUsername = document.getElementById("signupUsername").value.trim();
+      const signupEmail = document.getElementById("signupEmail").value.trim();
+      const signupPassword = document.getElementById("signupPassword").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      // Clear old error styling/message first
+      errorMessage.textContent = "";
+      errorMessage.classList.add("hidden");
+
+      if (
+      signupName === "" ||
+      signupUsername === "" ||
+      signupEmail === "" ||
+      signupPassword === "" ||
+      confirmPassword === "" 
+      ) {
+        event.preventDefault();
+        showError("Please fill in all signup fields!");
+        return;
+      }
+
+      if(signupPassword !== confirmPassword) {
+        event.preventDefault();
+        showError("Passwords do not match!");
+      }
     });
 
     // Handle guest login button
