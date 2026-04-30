@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       } else {
         //Insert the new user into the users table
         $insertStmt = $db->prepare("
-          INSERT INTO users (username, name, emial, password, is_guest)
+          INSERT INTO users (username, name, email, password, is_guest)
           VALUES (?, ?, ?, ?, 0)
         ");
 
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <?php
                 if ($errorMessage) {
                   echo $errorMessage;
-                } elseif ($errorMessage) {
+                } elseif ($successMessage) {
                   echo $successMessage;
                 }
               ?>
@@ -168,19 +168,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <!-- SIGNUP FORM -->
             <form id="signupForm" method="POST" action="" class="hidden">
-                <input type="hidden" name="formType" calue="signup">
+                <input type="hidden" name="formType" value="signup">
 
-                <label for=""signupName>Name</label>
-                <input type="text" id="signupName" name="signupUsername" placeholder="Enter a name!" >
+                <label for="signupName">Name</label>
+                <input type="text" id="signupName" name="signupName" placeholder="Enter a name!" >
 
                 <label for="signupUsername">Username</label>
                 <input type="text" id="signupUsername" name="signupUsername" placeholder="Choose a username!">
 
                 <label for="email">Email</label>
-                <input type="email" if="signupEmail" name="signupEmail" placeholder="Enter your email.">
+                <input type="email" id="signupEmail" name="signupEmail" placeholder="Enter your email.">
 
                 <label for="signupPassword">Password</label>
-                <input type="password" id="confirmPassword" name="signupPassword" placeholder="Create a password.">
+                <input type="password" id="signupPassword" name="signupPassword" placeholder="Create a password.">
 
                 <label for="confirmPassword">Confrim Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password.">
@@ -189,10 +189,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <button type="button" id="showLoginBtn" class="secondary-btn">Back to Login</button>
             </form>
 
-                <!-- Show PHP login errors here -->
-                <div id="errorMessage" class="error-message <?php echo $errorMessage ? '' : 'hidden'; ?>">
-                    <?php echo $errorMessage; ?>
-                </div>
         </div>
     </div>
 
