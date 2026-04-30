@@ -53,9 +53,9 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (count($rows) > 0): ?>
                         <?php foreach ($rows as $row): ?>
                         <tr>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['score']; ?>%</td>
-                            <td><?php echo $row['date_taken']; ?></td>
+                            <td><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($row['score'], ENT_QUOTES, 'UTF-8'); ?>%</td>
+                            <td><?php echo htmlspecialchars($row['date_taken'], ENT_QUOTES, 'UTF-8'); ?></td>
                         </tr>
                         <?php endforeach; ?>
 

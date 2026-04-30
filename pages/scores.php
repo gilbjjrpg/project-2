@@ -1,12 +1,14 @@
 <?php
+session_start();
+
 // Connect to the SQLite database
 include '../data/database.php';
 
-// Try to get the currently logged-in username from the cookie
-$currentUsername = $_COOKIE['username'] ?? null;
+// Try to get the currently logged-in username from the session
+$currentUsername = $_SESSION['username'] ?? null;
 
 //Checks whether the visitor is a guest
-$isGuest = ($currentUsername === "Guest");
+$isGuest = !empty($_SESSION['isGuest']);
 
 // This will hold the matched user's basic info
 $currentUser = null;
@@ -14,7 +16,7 @@ $currentUser = null;
 // This will hold all score rows for the current user
 $userScores = [];
 
-// Only continue if a username cookie exists & user is NOT a guest
+// Only continue if a username session exists & user is NOT a guest
 if ($currentUsername && !$isGuest) {
 
     // Find the logged-in user in the users table
@@ -24,7 +26,7 @@ if ($currentUsername && !$isGuest) {
         WHERE username = ?
     ");
 
-    // Run the query with the username from the cookie
+    // Run the query with the username from the session
     $userStmt->execute([$currentUsername]);
 
     // Fetch the matching user row
@@ -83,9 +85,9 @@ if ($currentUsername && !$isGuest) {
                         <!-- Loop through each saved score row -->
                         <?php foreach ($userScores as $score): ?>
                             <tr>
-                                <td><?php echo $score['quiz_type']; ?></td>
-                                <td><?php echo $score['score']; ?>%</td>
-                                <td><?php echo $score['date_taken']; ?></td>
+                                <td><?php echo htmlspecialchars($score['quiz_type'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($score['score'], ENT_QUOTES, 'UTF-8'); ?>%</td>
+                                <td><?php echo htmlspecialchars($score['date_taken'], ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </table>

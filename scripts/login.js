@@ -92,12 +92,7 @@ function setupLoginPage() {
     if (guestBtn) {
         guestBtn.addEventListener("click", function () {
 
-            // Username cookie is saved as "Guest"
-            // This allows for PHP pages to know the visitor is in guest mode
-            document.cookie = "username=Guest; path=/";
-
-            // ALso store a guest user object in sessionStorage
-            // This helps quiz.js know that this user is a guest
+            // Store a guest user object in sessionStorage for browser-side code.
             sessionStorage.setItem("currentUser", JSON.stringify({
             username: "Guest",
             name: "Guest",
@@ -105,7 +100,7 @@ function setupLoginPage() {
             }));
 
             // Redirect guest users to the dashboard page
-            window.location.href = "dashboard.php";
+            window.location.href = "guest_login.php";
         });
     }
 

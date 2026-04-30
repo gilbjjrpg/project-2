@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 //Connect tot he SQLite database
 include '../data/database.php';
@@ -22,8 +23,9 @@ if(
     exit;
 }
 
-// Get the logged-in username from the cookie inster of sessionStorage
-$currentUsername = $_COOKIE['username'] ?? null;
+// Get the logged-in username from the session
+$currentUsername = $_SESSION['username'] ?? null;
+$isGuest = !empty($_SESSION['isGuest']);
 
 //If no cookie exists, stop
 if(!$currentUsername) {
@@ -35,7 +37,7 @@ if(!$currentUsername) {
 }
 
 // If the user is a guest, do not save the score
-if($currentUsername === "Guest") {
+if($isGuest) {
     echo json_encode([
         "success" => false,
         "message" => "Guest scores are not saved!"

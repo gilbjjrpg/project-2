@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Connect to the SQLite database
 include '../data/database.php';
 
@@ -54,8 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($matchedUser && $passwordMatches) {
 
-            // Store the username in a cookie so other PHP pages can identify the user
-            setcookie("username", $matchedUser["username"], time() + 86400, "/");
+            session_regenerate_id(true);
+            $_SESSION["username"] = $matchedUser["username"];
+            $_SESSION["isGuest"] = false;
 
             // Redirect to the dashboard page
             header("Location: dashboard.php");
@@ -130,7 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         //Log the new user in immediately after signup
-        setcookie("username", $signupUsername, time() + 86400, "/");
+        session_regenerate_id(true);
+        $_SESSION["username"] = $signupUsername;
+        $_SESSION["isGuest"] = false;
 
         //Redirect to the Dashboard
         header("Location: dashboard.php");

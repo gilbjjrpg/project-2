@@ -1,12 +1,14 @@
 <?php
+session_start();
+
 // connect to the SQLite database
 include '../data/database.php';
 
-// try to get the currently logged-in username from the cookie
-$currentUsername = $_COOKIE['username'] ?? null;
+// try to get the currently logged-in username from the session
+$currentUsername = $_SESSION['username'] ?? null;
 
 //Checks whether the visitor is a guest
-$isGuest = ($currentUsername === "Guest");
+$isGuest = !empty($_SESSION['isGuest']);
 
 // this will hold the matched user's basic profile information
 $currentUser = null;
@@ -14,7 +16,7 @@ $currentUser = null;
 // this will hold the user's quiz history from the scores table
 $playHistory = [];
 
-// only continue if a username cookie exists && user is not a guest
+// only continue if a username session exists && user is not a guest
 if ($currentUsername && !$isGuest) {
 
     // prepare a query to get the user's basic information
@@ -24,7 +26,7 @@ if ($currentUsername && !$isGuest) {
         WHERE username = ?
     ");
 
-    // run the query using the username from the cookie
+    // run the query using the username from the session
     $userStmt->execute([$currentUsername]);
 
     // fetch the matching user as an associative array
@@ -75,11 +77,11 @@ if ($currentUsername && !$isGuest) {
             <?php elseif ($currentUser): ?>
 
                 <!-- Show the user's name at the top -->
-                <h1>Welcome, <?php echo $currentUser['name']; ?>!</h1>
+                <h1>Welcome, <?php echo htmlspecialchars($currentUser['name'], ENT_QUOTES, 'UTF-8'); ?>!</h1>
                 <h2>Your Dashboard</h2>
 
-                <p>Username: <?php echo $currentUser['username']; ?></p>
-                <p>Email: <?php echo $currentUser['email']; ?></p>
+                <p>Username: <?php echo htmlspecialchars($currentUser['username'], ENT_QUOTES, 'UTF-8'); ?></p>
+                <p>Email: <?php echo htmlspecialchars($currentUser['email'], ENT_QUOTES, 'UTF-8'); ?></p>
 
                 <h2>Play History</h2>
 
@@ -95,9 +97,9 @@ if ($currentUsername && !$isGuest) {
                         <!-- Loop through each saved quiz result -->
                         <?php foreach ($playHistory as $quiz): ?>
                             <tr>
-                                <td><?php echo $quiz['quiz_type']; ?></td>
-                                <td><?php echo $quiz['score']; ?>%</td>
-                                <td><?php echo $quiz['date_taken']; ?></td>
+                                <td><?php echo htmlspecialchars($quiz['quiz_type'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($quiz['score'], ENT_QUOTES, 'UTF-8'); ?>%</td>
+                                <td><?php echo htmlspecialchars($quiz['date_taken'], ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </table>
