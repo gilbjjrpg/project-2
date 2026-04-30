@@ -107,6 +107,11 @@ function setupLoginPage() {
     // Helper function for showing an error message
     function showError(message) {
         errorMessage.textContent = message;
-        errorMessage.classList.remove("hidden");
+
+        if (message === "") {
+            errorMessage.classList.add("hidden");
+        } else {
+            errorMessage.classList.remove("hidden");
+        }
     }
 }
