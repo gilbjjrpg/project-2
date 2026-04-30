@@ -49,7 +49,7 @@ function setupQuizMenuPage() {
 //Sets up the custom quiz page
 function setupQuizCustomizePage() {
 
-    // get the custome quiz from from quizCustomize.php
+    // get the custom quiz form from quizCustomize.php
     const customQuizForm = document.getElementById("customQuizForm");
 
     //if the form doesn't exist, then this is not the custom quiz page
@@ -65,7 +65,7 @@ function setupQuizCustomizePage() {
 
         //questionCount = receives the number of questions the user wants
         //timePerQuestion = receives the time per question the user wants 
-        //range = recives the selected question range
+        //range = receives the selected question range
         const questionCount = Number(document.getElementById("questionCount").value);
         const timePerQuestion = Number(document.getElementById("timePerQuestion").value);
         const range = document.getElementById("questionRange").value;
@@ -92,11 +92,13 @@ function setupQuizCustomizePage() {
 // QUIZ TIME PAGE 
 
 let allQuestions = []; //stores all questions loaded from questions.json
-let quizQuestions = []; //stores *ONLY* the questions selecter for the current quiz
+let quizQuestions = []; //stores *ONLY* the questions selected for the current quiz
 let currentQuestionIndex = 0; //keeps track of which question the user is currently on
 let totalCorrect = 0; //keeps track of total correct questions
 let selectedAnswer = null; //stores the selected answer the user chose for current question
 let quizConfig = null; //stores the quiz settings loaded from sessionStorage
+let timerInterval = null; //stores the active timer interval so it can be stopped/reset
+let timeLeft = 0; //stores how many seconds are left for the current question
 
 //Sets up the live quiz page
 async function setupQuizTimePage() {
@@ -116,7 +118,7 @@ async function setupQuizTimePage() {
     //parses quizConfig to receive the saved settings from sessionStorage
     quizConfig = JSON.parse(sessionStorage.getItem("quizConfig"));
 
-    //no quizConfif = no quiz. Stops and sends an error to the console.
+    //no quizConfig = no quiz. Stops and sends an error to the console.
     if(!quizConfig) {
         console.error("No quizConfig found.");
         document.getElementById("quizContainer").innerHTML = "<p>Quiz settings were not found. Please go back and start a quiz from the quiz menu.</p>"
@@ -133,9 +135,37 @@ async function setupQuizTimePage() {
         return;
     }
 
-    //generateQuizQuestions receives information from quizQuestions and passes them along allQuestions and quizConfig.questionCount
-    //to the parameters of the generateQuizQuestions function to generate a quiz.
-    quizQuestions = generateQuizQuestions(allQuestions, quizConfig.questionCount);
+    //filterQuestionsByRange receives all questions and the selected range from quizConfig.
+    //This makes custom quizzes only pull questions from the selected range.
+    const filteredQuestions = filterQuestionsByRange(allQuestions, quizConfig.range);
+
+    //if no questions exist in the selected range, stop and show an error message.
+    if(filteredQuestions.length === 0) {
+        console.error("No questions found for selected range.");
+        document.getElementById("quizContainer").innerHTML = "<p>No questions were found for that range. Please choose another range.</p>";
+        return;
+    }
+
+    //generateQuizQuestions receives the filtered question list and quizConfig.questionCount
+    //to generate the final set of questions for this quiz.
+    quizQuestions = generateQuizQuestions(filteredQuestions, quizConfig.questionCount);
+
+    //Filters questions based on the custom range selected on quizCustomize.php.
+    function filterQuestionsByRange(questions, range) {
+
+        //If the user selected all questions, return the full question list.
+        if(range === "all") {
+            return questions;
+        } 
+
+        //Split the range value, such as "100-199", into a start and end number.
+        const parts = range.split("-");
+        const start = Number(parts[0]);
+        const end = Number(parts[1]);
+
+        //Return only the questions inside the selected index range.
+        return questions.slice(start, end + 1);
+    }
 
     //makes the answer buttons clickable
     setupAnswerButtons(); 
@@ -143,7 +173,7 @@ async function setupQuizTimePage() {
     //displays the first question on the page
     displayQuestion();
 
-    //event listner for when the next button is clicked. moves on to the next question.
+    //event listener for when the next button is clicked. moves on to the next question.
     nextBtn.addEventListener("click", handleNextQuestion);
 }
 
@@ -186,7 +216,7 @@ function shuffleArray(array){
     //start from the end of the array and work backwards
     for(let i = copiedArray.length - 1; i > 0; i--) {
 
-        //pick a randmo index between 0 and i
+        //pick a random index between 0 and i
         const randomIndex = Math.floor(Math.random() * (i + 1));
 
         //copiedArray swaps the current item with the random array
@@ -204,7 +234,7 @@ function shuffleArray(array){
 //Takes questions and amount the user has input to shuffle in an array and return
 function generateQuizQuestions(questions, amount) {
 
-    //shuffle all avaiable questions FIRST
+    //shuffle all available questions FIRST
     const shuffledQuestions = shuffleArray(questions);
 
     //return only the number of questions needed for this quiz
@@ -248,13 +278,63 @@ function displayQuestion() {
      answerButtons[3].textContent = currentQuestion.D;
     answerButtons[3].dataset.answer = "D";
 
-    //resets selected answer for each new questions
+    //resets selected answer for each new question
     selectedAnswer = null;
 
+    //removes the selected styling from all answer buttons for the new question
     answerButtons.forEach(function (button) {
         button.classList.remove("selected");
     });
 
+    //starts the countdown timer for the current question
+    startTimer();
+}
+
+//Starts or restarts the countdown timer for the current question
+function startTimer() {
+
+    //stops any old timer before starting a new one
+    clearInterval(timerInterval);
+
+    //quizTimer = gets the timer display area from quizTime.php
+    const quizTimer = document.getElementById("quizTimer");
+
+    //sets the timer to the number of seconds from quizConfig
+    timeLeft = quizConfig.timePerQuestion;
+
+    //displays the starting timer value
+    quizTimer.textContent = "Time left: " + timeLeft + "s";
+
+    //counts down once every second
+    timerInterval = setInterval(function() {
+        timeLeft--;
+        quizTimer.textContent = "Time left: " + timeLeft + "s";
+
+        //when the timer reaches zero, stop the timer and move on
+        if(timeLeft <= 0) {
+            clearInterval(timerInterval);
+            handleTimeUp();
+        }
+    }, 1000);
+}
+
+//Handles what happens when the user runs out of time on a question
+function handleTimeUp() {
+
+    //sets selectedAnswer to null so the question counts as incorrect
+    selectedAnswer = null;
+
+    //moves to the next question
+    currentQuestionIndex++;
+
+    //if there are questions left, display the next one
+    if(currentQuestionIndex < quizQuestions.length) {
+        displayQuestion();
+
+        //if not, show the final score
+    } else {
+        showFinalScore();
+    }
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -268,7 +348,7 @@ function setupAnswerButtons() {
     //receives the answer buttons from quizTime.php
     const answerButtons = document.querySelectorAll(".answer-btn");
 
-    //loops through each answwer button.
+    //loops through each answer button.
     answerButtons.forEach(function (button){
 
         //when a button is clicked, save its answer letter
@@ -292,7 +372,7 @@ function setupAnswerButtons() {
 
 // NEXT QUESTION HANDLER
 
-//Checks the slected answer and updates score/progress
+//Checks the selected answer and updates score/progress
 function handleNextQuestion() {
 
     //if the user has not selected an answer yet, show an alert and stop
@@ -301,10 +381,13 @@ function handleNextQuestion() {
         return;
     }
 
+    //stops the current question timer once the user submits an answer
+    clearInterval(timerInterval);
+
     //get the current question object
     const currentQuestion = quizQuestions[currentQuestionIndex];
 
-    //if the selected answer is corret, increment totalCorrect
+    //if the selected answer is correct, increment totalCorrect
     if(selectedAnswer === currentQuestion.answer) {
         totalCorrect++;
     }
@@ -369,10 +452,12 @@ async function saveQuizScore(scorePercent) {
 
 function showFinalScore() {
 
+    clearInterval(timerInterval);
+
     //sends a message to the console to show that the showFinalScore function is running
     console.log("showFinalScore() is running");
 
-    //get the quizContainter in quizTime.php
+    //get the quizContainer in quizTime.php
     const quizContainer = document.getElementById("quizContainer");
 
     //divides totalCorrect to the length of questions, multiplies it by 100 and rounds it to get the final score.
