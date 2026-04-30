@@ -153,20 +153,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <!-- Login form now submits to PHP -->
             <form id="loginForm" method="POST" action="">
+                <input type="hidden" name="formType" value="login">
+
                 <label for="loginIdentifier">Username or Email</label>
                 <input type="text" id="loginIdentifier" name="loginIdentifier" placeholder="Enter username or email">
 
                 <label for="loginPassword">Password</label>
                 <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter password">
 
+                <button type="submit" class="primary-btn">Login</button>
+                <button type="button" id="showSignupBtn" class="secondary-btn">Create Account</button>
+                <button type="button" id="guestBtn" class="secondary-btn">Continue as Guest</button>
+            </form>
+
+            <!-- SIGNUP FORM -->
+            <form id="signupForm" method="POST" action="" class="hidden">
+                <input type="hidden" name="formType" calue="signup">
+
+                <label for=""signupName>Name</label>
+                <input type="text" id="signupName" name="signupUsername" placeholder="Enter a name!" >
+
+                <label for="signupUsername">Username</label>
+                <input type="text" id="signupUsername" name="signupUsername" placeholder="Choose a username!">
+
+                <label for="email">Email</label>
+                <input type="email" if="signupEmail" name="signupEmail" placeholder="Enter your email.">
+
+                <label for="signupPassword">Password</label>
+                <input type="password" id="confirmPassword" name="signupPassword" placeholder="Create a password.">
+
+                <label for="confirmPassword">Confrim Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password.">
+
+                <button type="submit" class="primary-btn">Sign Up</button>
+                <button type="button" id="showLoginBtn" class="secondary-btn">Back to Login</button>
+            </form>
+
                 <!-- Show PHP login errors here -->
                 <div id="errorMessage" class="error-message <?php echo $errorMessage ? '' : 'hidden'; ?>">
                     <?php echo $errorMessage; ?>
                 </div>
-
-                <button type="submit" class="primary-btn">Login</button>
-                <button type="button" id="guestBtn" class="secondary-btn">Continue as Guest</button>
-            </form>
         </div>
     </div>
 
