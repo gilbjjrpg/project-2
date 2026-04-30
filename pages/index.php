@@ -4,9 +4,18 @@ include '../data/database.php';
 
 // This will hold any login error message
 $errorMessage = "";
+$successMessage = "";
 
 // Check whether the login form was submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+  // Find out which form type is being submitted: login or signup
+  $formType = $_POST["formType"] ?? "";
+
+  //-------------------------------------------------------------
+  // LOGIN FORM LOGIC
+  //-------------------------------------------------------------
+  if ($formType === "login") {
 
     // Get the entered username/email and password from the form
     $loginIdentifier = trim($_POST["loginIdentifier"] ?? "");
@@ -30,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // If a user was found and the password matches, log them in
         if ($matchedUser && $matchedUser["password"] === $loginPassword) {
-          
+
             // Store the username in a cookie so other PHP pages can identify the user
             setcookie("username", $matchedUser["username"], time() + 86400, "/");
 
@@ -45,6 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Show an error if fields were left blank
         $errorMessage = "Please enter both your username/email and password.";
     }
+  }
+
+  //-------------------------------------------------------------
+  // SIGNUP FORM LOGIC
+  //-------------------------------------------------------------
 }
 ?>
 

@@ -363,6 +363,8 @@ async function saveQuizScore(scorePercent) {
 // RESULTS 
 
 function showFinalScore() {
+
+    //sends a message to the console to show that the showFinalScore function is running
     console.log("showFinalScore() is running");
 
     //get the quizContainter in quizTime.php
