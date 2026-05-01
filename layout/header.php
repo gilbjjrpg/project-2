@@ -26,6 +26,10 @@
           <a href="../pages/scores.php">Scores</a>
         </li>
 
+        <li class="button">
+          <a href="../pages/logout.php">Logout</a>
+        </li>
+
       </ul>
     </nav>
 
