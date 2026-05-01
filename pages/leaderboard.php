@@ -36,7 +36,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
             <main class="leaderboard-container">
                 <h1>Leaderboards</h1>
-                <p>This is the leaderboard!</p>
+                <p>This is the leaderboard for 10-Question quizzes!</p>
 
                 <table border="1">
                     <tr>
