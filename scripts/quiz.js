@@ -458,6 +458,18 @@ async function saveQuizScore(scorePercent) {
     }
 }
 
+//Formats seconds into a readable time, such as "2m 14s"
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    if (minutes > 0) {
+        return minutes + "m " + remainingSeconds + "s";
+    }
+
+    return remainingSeconds + "s";
+}
+
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // RESULTS 
@@ -475,6 +487,9 @@ function showFinalScore() {
     //divides totalCorrect to the length of questions, multiplies it by 100 and rounds it to get the final score.
     const scorePercent = Math.round((totalCorrect / quizQuestions.length) * 100);
 
+    //calculates the total time it took the user to finish the quiz.
+    const totalTime = Math.round((Date.now() - quizStartTime) / 1000);
+
     //Save the score to the SQL database
     saveQuizScore(scorePercent);
 
@@ -484,6 +499,7 @@ function showFinalScore() {
         "<h2>Quiz complete!</h2>" +
         "<p>You got " + totalCorrect + " out of " + quizQuestions.length + " correct.</p>" +
         "<p>Your score: " + scorePercent + "%</p>" +
+        "<p>Total time: " + formatTime(totalTime) + "</p>" +
         "<a href='quiz.php' class='primary-btn'>Return Home</a>" +
         "<a href='leaderboard.php' class='primary-btn'>Go to Leaderboard</a>" +
         "</div>";

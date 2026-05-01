@@ -4,6 +4,22 @@
 //This file sets up the $db connection that this page will use.
 include '../data/database.php';
 
+//Formats seconds into a readable time, such as "2m 14s".
+function formatTime($seconds) {
+    if ($seconds === null || $seconds === "") {
+        return "N/A";
+    }
+
+    $seconds = (int)$seconds;
+    $minutes = intdiv($seconds, 60);
+    $remainingSeconds = $seconds % 60;
+
+    if ($minutes > 0) {
+        return $minutes . "m " . $remainingSeconds . "s";
+    }
+
+    return $remainingSeconds . "s";
+}
 
 //SQL query to build the leaderboard.
 //The leaderboard view already includes only "10 Question" quiz scores.
@@ -52,7 +68,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($row['score'], ENT_QUOTES, 'UTF-8'); ?>%</td>
-                            <td><?php echo htmlspecialchars($row['total_time'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?><?php echo isset($row['total_time']) ? 's' : ''; ?></td>
+                            <td><?php echo htmlspecialchars(formatTime($row['total_time'] ?? null), ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($row['date_taken'], ENT_QUOTES, 'UTF-8'); ?></td>
                         </tr>
                         <?php endforeach; ?>

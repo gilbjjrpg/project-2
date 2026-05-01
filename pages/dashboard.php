@@ -16,6 +16,23 @@ $currentUser = null;
 // this will hold the user's quiz history from the scores table
 $playHistory = [];
 
+//Formats seconds into a readable time, such as "2m 14s".
+function formatTime($seconds) {
+    if ($seconds === null || $seconds === "") {
+        return "N/A";
+    }
+
+    $seconds = (int)$seconds;
+    $minutes = intdiv($seconds, 60);
+    $remainingSeconds = $seconds % 60;
+
+    if ($minutes > 0) {
+        return $minutes . "m " . $remainingSeconds . "s";
+    }
+
+    return $remainingSeconds . "s";
+}
+
 // only continue if a username session exists && user is not a guest
 if ($currentUsername && !$isGuest) {
 
@@ -102,7 +119,7 @@ if ($currentUsername && !$isGuest) {
                                 <td><?php echo htmlspecialchars($quiz['quiz_type'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($quiz['score'], ENT_QUOTES, 'UTF-8'); ?>%</td>
                                 <td><?php echo htmlspecialchars($quiz['question_count'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php echo htmlspecialchars($quiz['total_time'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?><?php echo isset($quiz['total_time']) ? 's' : ''; ?></td>
+                                <td><?php echo htmlspecialchars(formatTime($quiz['total_time'] ?? null), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($quiz['date_taken'], ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php endforeach; ?>
