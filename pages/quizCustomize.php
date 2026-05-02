@@ -1,13 +1,13 @@
 <?php
-// This page lets the user choose custome quiz settings.
-// The user's choices will be saved and then used by quizTime.php
+// This page lets the user choose custom quiz settings.
+// The user's choices will be saved in sessionStorage and then used by quizTime.php.
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
 
-        <meta charset="UTF-8" name="viewport" content="width=device-width, intial-scale=1.0">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="../scripts/quiz.js" defer></script>
         <link rel="stylesheet" href="../style/style.css">
         <title>Quiz customization - Quizberry!</title>
@@ -17,19 +17,24 @@
     <body>
 
     <header>
+    <!-- Shared site navigation. -->
     <?php include '../layout/header.php' ?>
     </header>
 
     <main>
         <h1>Customize your Quiz!</h1>
 
+        <!-- JavaScript reads this form and saves the custom quiz settings. -->
         <form id=customQuizForm>
+            <!-- Controls how many questions will be selected for the quiz. -->
             <label for="questionCount">Number of Questions</label>
             <input type="number" id="questionCount" min="5" max="50" value="10">
 
+            <!-- Controls how many seconds the user gets on each question. -->
             <label for="timePerQuestion">Time per questions (in seconds)</label>
             <input type="number" id="timePerQuestion" min="30" max="300" value="60"> 
 
+            <!-- Controls which section of questions.json the quiz pulls from. -->
             <label for="questionRange">Question Range</label>
             <select id="questionRange">
                 <option value="all">All questions!</option>
@@ -46,6 +51,7 @@
     </main>
 
     <footer>
+        <!-- Shared site footer. -->
         <?php include '../layout/footer.php' ?>
     </footer>
 

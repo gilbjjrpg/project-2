@@ -196,7 +196,7 @@ function seedStarterDataIfNeeded($db) {
     seedStarterData($db);
 }
 
-//Loads starter/demo users and scores into the database.
+//Loads starter/demo data from users.json and quizberry.db into the database.
 function seedStarterData($db) {
     //Loads starter/demo user data from users.json.
     $usersFile = __DIR__ . "/users.json";
