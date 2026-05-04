@@ -193,11 +193,6 @@ input:focus {
   margin-bottom: 10px;
 }
 
-.primary-btn {
-  background: #450589;
-  color: white;
-}
-
 .primary-btn:hover {
   background: #310363;
 }
@@ -209,6 +204,28 @@ input:focus {
 
 .secondary-btn:hover {
   background: #d8dce8;
+}
+
+.quiz-option-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.quiz-option-btn {
+  min-width: 145px;
+  min-height: 52px;
+  font-weight: bold;
+  box-shadow: 6px 6px 6px rgb(135, 135, 135);
+  background: #450589;
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .error-message {

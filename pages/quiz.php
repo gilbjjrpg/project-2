@@ -33,15 +33,13 @@
                 </h2>
             </div>
 
-            <!-- JavaScript uses this id to create the standard 10-question quizConfig. -->
-            <a href="quizTime.php" id="startTenQuestion" class="primary-btn">
-                <button>10-Question</button>
-            </a>
+            <div class="quiz-option-buttons">
+                <!-- JavaScript uses this id to create the standard 10-question quizConfig. -->
+                <a href="quizTime.php" id="startTenQuestion" class="quiz-option-btn">10-Question</a>
 
-            <!-- Custom quizzes are configured on a separate form page. -->
-            <a href="quizCustomize.php" class="primary-btn">
-                <button>Custom</button>
-            </a>
+                <!-- Custom quizzes are configured on a separate form page. -->
+                <a href="quizCustomize.php" class="quiz-option-btn">Custom</a>
+            </div>
 
         </main>
 
