@@ -115,12 +115,13 @@ main {
 
 .main-content h1 {
   font-size: 55px;
-  text-shadow: 3px 3px 1px grey;
+  padding: 5px 20px;
+  text-shadow: 3px 3px 1px rgb(180, 180, 180);
 }
 
 .main-content h2 {
   font-size: 25px;
-  text-shadow: 3px 3px 1px grey;
+  text-shadow: 3px 3px 1px rgb(180, 180, 180);
 }
 
 .main-content table {

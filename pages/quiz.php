@@ -34,10 +34,14 @@
             </div>
 
             <!-- JavaScript uses this id to create the standard 10-question quizConfig. -->
-            <a href="quizTime.php" id="startTenQuestion">10-Question</a>
+            <a href="quizTime.php" id="startTenQuestion" class="primary-btn">
+                <button>10-Question</button>
+            </a>
 
             <!-- Custom quizzes are configured on a separate form page. -->
-            <a href="quizCustomize.php">Custom</a>
+            <a href="quizCustomize.php" class="primary-btn">
+                <button>Custom</button>
+            </a>
 
         </main>
 
