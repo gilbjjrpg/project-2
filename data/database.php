@@ -13,7 +13,10 @@ try {
 
         //Create a PDO connection to the MySQL database.
         $db = new PDO(
-            "mysql:host=$dbHost;port=$dbPort;dbname=$dbName;charset=utf8mb4",
+            "mysql:host=$dbHost;
+            port=$dbPort;
+            dbname=$dbName;
+            charset=utf8mb4",
             $dbUser,
             $dbPassword
         );
