@@ -23,10 +23,11 @@
 
     <main>
         <h1>Customize your Quiz!</h1>
+        <h2>Create a Quiz of your own!</h2>
 
         <!-- JavaScript reads this form and saves the custom quiz settings. -->
         <form id=customQuizForm>
-            
+
             <!-- Controls how many questions will be selected for the quiz. -->
             <label for="questionCount">Number of Questions</label>
             <input type="number" id="questionCount" min="5" max="50" value="10">

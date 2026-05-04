@@ -82,7 +82,7 @@ if ($currentUsername && !$isGuest) {
 
         <main class="main-content scores-container">
             <h1>Scores</h1>
-            <p>Your scores!</p>
+            <h2>Your scores!</h2>
 
             <?php if ($isGuest): ?>
                 <p>You are playing as a guest, so your scores will not be saved!</p>

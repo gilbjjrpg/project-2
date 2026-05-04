@@ -28,9 +28,9 @@
                     Welcome to the homepage. Choose your Quiz!
                 </h1>
 
-                <p>
+                <h2>
                     Select to do either a 10-Question or your own custom Quiz.
-                </p>
+                </h2>
             </div>
 
             <!-- JavaScript uses this id to create the standard 10-question quizConfig. -->

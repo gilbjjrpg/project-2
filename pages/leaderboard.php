@@ -52,7 +52,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
             <main class="main-content leaderboard-container">
                 <h1>Leaderboards</h1>
-                <p>This is the leaderboard for 10-Question quizzes!</p>
+                <h2>This is the leaderboard for 10-Question quizzes!</h2>
 
                 <table border="1">
                     <tr>
