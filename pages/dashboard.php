@@ -83,7 +83,7 @@ if ($currentUsername && !$isGuest) {
             <?php include '../layout/header.php'; ?>
         </header>
 
-        <main>
+        <main class="main-content">
             <!-- Checks to see if the user is a guest first -->
             <?php if ($isGuest): ?>
                 <h1>Welcome, Guest!</h1>

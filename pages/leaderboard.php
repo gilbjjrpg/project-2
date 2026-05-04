@@ -50,7 +50,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                 <?php include '../layout/header.php' ?>
             </header>
 
-            <main class="leaderboard-container">
+            <main class="main-content leaderboard-container">
                 <h1>Leaderboards</h1>
                 <p>This is the leaderboard for 10-Question quizzes!</p>
 

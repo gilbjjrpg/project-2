@@ -80,7 +80,7 @@ if ($currentUsername && !$isGuest) {
             <?php include '../layout/header.php'; ?>
         </header>
 
-        <main class="scores-container">
+        <main class="main-content scores-container">
             <h1>Scores</h1>
             <p>Your scores!</p>
 

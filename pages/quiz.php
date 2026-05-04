@@ -21,7 +21,7 @@
             <?php include '../layout/header.php' ?>
         </header>
 
-        <main>
+        <main class="main-content">
             <div>
                 <!-- Main page heading and short instructions for picking a quiz mode. -->
                 <h1>

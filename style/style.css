@@ -102,6 +102,22 @@ main {
   flex: 1;
 }
 
+.main-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.main-content table {
+  margin: 18px auto 0;
+  text-align: center;
+}
+
 .login-page-wrapper {
   min-height: 100vh;
   background: #921cfa;

@@ -11,7 +11,7 @@
             <?php include '../layout/header.php' ?>
         </header>
 
-        <main>
+        <main class="main-content">
             <h1>Home</h1>
             <p>This is the homepage for Quizberry!</p>
         </main>
