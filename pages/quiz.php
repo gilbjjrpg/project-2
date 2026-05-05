@@ -2,7 +2,7 @@
 
 <?php 
 // This page is the quiz menu page that doubles as the homepage.
-// The quiz is not actually run here.
+// The quiz is not actually ran here.
 // User can select to do a 10-question quiz or a custom quiz.
 ?>
 

@@ -214,7 +214,7 @@ function seedStarterData($db) {
         }
 
         //Hash the starter password before saving it to the database.
-        $hashedPassword = password_hash($user['password'], PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($user['password'], PASSWORD_BCRYPT);
 
         //Insert the user into the users table.
         $stmt = $db->prepare("

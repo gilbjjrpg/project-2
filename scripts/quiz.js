@@ -294,6 +294,10 @@ function displayQuestion() {
     startTimer();
 }
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//TIMER FUNCTION
+
 //Starts or restarts the countdown timer for the current question
 function startTimer() {
 
@@ -322,6 +326,10 @@ function startTimer() {
     }, 1000);
 }
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//TIME UP FUNCTION
+
 //Handles what happens when the user runs out of time on a question
 function handleTimeUp() {
 
@@ -344,7 +352,6 @@ function handleTimeUp() {
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // SET UP FOR ANSWER BUTTONS TO MAKE THEM FUNCTIONAL
-
 
 //Adds click behavior to answer buttons
 function setupAnswerButtons() {
@@ -457,6 +464,10 @@ async function saveQuizScore(scorePercent) {
         console.error("Error saving score:", error);
     }
 }
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// TIME FORMATTER (for leaderboard/scores tables)
 
 //Formats seconds into a readable time, such as "2m 14s"
 function formatTime(seconds) {

@@ -1,4 +1,9 @@
 <?php
+
+/*
+As the name of the file would imply, this page is used to save the user's score and enter it into a table. 
+This page also isn't accessible via any links. Nothing happens when accessing it on browser.
+*/
 session_start();
 
 //Connect to the configured database

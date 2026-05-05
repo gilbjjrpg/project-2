@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Upgrade older plain-text passwords to hashed passwords after login.
             if (!$passwordMatches && hash_equals($matchedUser["password"], $loginPassword)) {
                 $passwordMatches = true;
-                $newHashedPassword = password_hash($loginPassword, PASSWORD_DEFAULT);
+                $newHashedPassword = password_hash($loginPassword, PASSWORD_BCRYPT);
                 $updatePasswordStmt = $db->prepare("UPDATE users SET password = ? WHERE id = ?");
                 $updatePasswordStmt->execute([$newHashedPassword, $matchedUser["id"]]);
             }
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           VALUES (?, ?, ?, ?, 0)
         ");
 
-        $hashedPassword = password_hash($signupPassword, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($signupPassword, PASSWORD_BCRYPT);
 
         $insertStmt->execute([
           $signupUsername,

@@ -5,7 +5,8 @@
     "_comment3": "If there are any further changes made, I will update this segment with more comments.",
 
     "_comment4": "As of today, the server is now running on MySQL. users.json and quizberry.db will continue",
-    "_comment5": "To exist, but will only host dummy data to be used."
+    "_comment5": "to exist, but will only host dummy data to be used and seeded if no data exists at the time",
+    "_comment6": "the website is launched. I highly recommend leaving these files as they are."
   },
   {
     "id": 1,
