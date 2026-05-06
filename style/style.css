@@ -149,11 +149,13 @@ main {
 .main-content h1 {
   font-size: 55px;
   padding: 5px 20px;
+  margin-bottom: 8px;
   text-shadow: 3px 3px 1px rgb(180, 180, 180);
 }
 
 .main-content h2 {
   font-size: 25px;
+  margin-top: 0px;
   text-shadow: 3px 3px 1px rgb(180, 180, 180);
 }
 
@@ -325,7 +327,7 @@ input:focus {
 
 #answerContainer {
   display: grid;
-  grid-template-columns: 140px 140px;
+  grid-template-columns: 200px 200px;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
@@ -358,8 +360,8 @@ input:focus {
 }
 
 .answer-btn.selected {
-  background: #bfc6d4;
-  color: black;
+  background: #61009a;
+  color: rgb(220, 220, 220);
   font-weight: bold;
   box-shadow: 3px 3px 3px rgb(135, 135, 135);
 }
