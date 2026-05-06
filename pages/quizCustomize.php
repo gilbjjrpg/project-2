@@ -46,7 +46,7 @@
                 <option value="500-599">500 - 599 range.</option>
             </select>
 
-            <button type="submit">Start Custom Quiz</button>
+            <button type="submit" id="startCustomQuizBtn">Start Custom Quiz</button>
         </form>
     </main>
 
