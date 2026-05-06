@@ -325,7 +325,7 @@ input:focus {
 
 #answerContainer {
   display: grid;
-  grid-template-columns: 70px 70px;
+  grid-template-columns: 140px 140px;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
