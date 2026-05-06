@@ -511,7 +511,7 @@ function showFinalScore() {
         "<p>You got " + totalCorrect + " out of " + quizQuestions.length + " correct.</p>" +
         "<p>Your score: " + scorePercent + "%</p>" +
         "<p>Total time: " + formatTime(totalTime) + "</p>" +
-        "<a href='quiz.php' class='primary-btn'>Return Home</a>" +
-        "<a href='leaderboard.php' class='primary-btn'>Go to Leaderboard</a>" +
+        "<a href='quiz.php' class='primary-btn result-btn'>Return Home</a>" +
+        "<a href='leaderboard.php' class='primary-bt result-btn'>Go to Leaderboard</a>" +
         "</div>";
 }
