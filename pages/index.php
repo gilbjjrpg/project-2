@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizberry! Login</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/style.css?v=2">
     <script src="../scripts/login.js" defer></script>
   </head>
 
