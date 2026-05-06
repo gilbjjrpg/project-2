@@ -65,10 +65,14 @@ nav ul {
   flex-wrap: wrap;
 }
 
+nav li {
+  flex: 0 0 auto;
+}
+
 nav li a {
     /*Styling for buttons.*/
     display: block;
-    padding: 15px clamp(16px, 2vw, 25px);
+    padding: 15px 25px;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
@@ -109,13 +113,6 @@ nav li.selected a {
     justify-content: center;
   }
 
-  nav li {
-    flex: 1 1 145px;
-  }
-
-  nav li a {
-    width: 100%;
-  }
 }
     
 * {

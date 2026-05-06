@@ -73,7 +73,7 @@ if ($currentUsername && !$isGuest) {
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../style/style.css?v=2">
+        <link rel="stylesheet" href="../style/style.css?v=3">
         <title>Your dashboard — Quizberry!</title>
     </head>
 
