@@ -354,13 +354,14 @@ input:focus {
 
 .answer-btn:hover {
   background: #d8dce8;
+  border: 2px solid transparent;
 }
 
 .answer-btn.selected {
   background: #bfc6d4;
-  border: 2px solid #450589;
   color: black;
   font-weight: bold;
+  box-shadow: 3px 3px 3px rgb(135, 135, 135);
 }
 
 #nextBtn {
