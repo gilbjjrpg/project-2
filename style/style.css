@@ -203,15 +203,23 @@ main {
 }
 
 #questionRange {
-  padding: 12px;
-  width: 150px;
+  padding: 10px;
+  width: 100%;
+  max-width: 200px;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   gap: 10px;
 }
 
 #startCustomQuizBtn {
-  width: 250px;
+  padding: 10px;
+  width: 100%;
+  max-width: 350px;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
+  gap: 10px;
 }
 
 form {

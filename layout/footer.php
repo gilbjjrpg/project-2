@@ -21,6 +21,6 @@
     </div>
 
     <!-- Shared footer copyright text shown at the bottom of pages that include this file. -->
-    <p class="footer-copyright">Quizberry! Copyright blah blah blah</p>
+    <p class="footer-copyright">Copyright © 2026 Grandberry Interactive Entertainment. All rights reserved.</p>
   </div>
 </footer>
