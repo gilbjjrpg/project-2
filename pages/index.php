@@ -183,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <label for="loginPassword">Password</label>
                 <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter password">
 
-                <button type="submit" class="primary-btn">Login</button>
+                <button type="submit" class="primary-btn login-btn">Login</button>
                 <button type="button" id="showSignupBtn" class="secondary-btn">Create Account</button>
                 <button type="button" id="guestBtn" class="secondary-btn">Continue as Guest</button>
             </form>

@@ -59,7 +59,7 @@ nav ul {
   margin: 0;
   padding: 0;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -104,7 +104,7 @@ nav li.selected a {
   }
 
   nav ul {
-    justify-content: center;
+    flex-direction: column;
   }
 
   nav li {
@@ -213,6 +213,11 @@ input {
 input:focus {
   outline: none;
   border-color: #310363;
+}
+
+.login-btn {
+  background: #450589;
+  color: white;
 }
 
 .primary-btn,
