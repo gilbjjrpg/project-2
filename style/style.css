@@ -353,8 +353,8 @@ input:focus {
 }
 
 .answer-btn:hover {
-  background: #d8dce8;
-  border: 2px solid transparent;
+  background: #bf99da;
+  border: 0px solid transparent;
 }
 
 .answer-btn.selected {
