@@ -195,6 +195,13 @@ main {
   color: #666;
 }
 
+#customize-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
 form {
   display: flex;
   flex-direction: column;

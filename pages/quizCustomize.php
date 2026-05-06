@@ -19,7 +19,7 @@
     <!-- Shared site navigation. -->
     <?php include '../layout/header.php' ?>
 
-    <main>
+    <main class="main-content customize-container">
         <h1>Customize your Quiz!</h1>
         <h2>Create a Quiz of your own!</h2>
 

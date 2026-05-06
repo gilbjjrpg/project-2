@@ -1,4 +1,7 @@
 <?php
+
+//This page is used to set up the database for the server.
+
 try {
     //Connect to MySQL when DB_HOST or MYSQL_HOST is set. Otherwise, use local SQLite.
     $dbDriver = (getenv("DB_HOST") || getenv("MYSQL_HOST")) ? "mysql" : "sqlite";
