@@ -46,9 +46,7 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
     </head>
 
     <body>
-            <header>
-                <?php include '../layout/header.php' ?>
-            </header>
+            <?php include '../layout/header.php' ?>
 
             <main class="main-content leaderboard-container">
                 <h1>Leaderboards</h1>
@@ -83,11 +81,9 @@ $rows = $result->fetchAll(PDO::FETCH_ASSOC);
                 </table>
             </main>
 
-            <footer>
-                <div class="footer-container">
-                    <?php include '../layout/footer.php'; ?>
-                </div>
-            </footer>
+            <div class="footer-container">
+                <?php include '../layout/footer.php'; ?>
+            </div>
 
 
     </body>

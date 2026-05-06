@@ -78,10 +78,7 @@ if ($currentUsername && !$isGuest) {
     </head>
 
     <body>
-        <header>
-            
-            <?php include '../layout/header.php'; ?>
-        </header>
+        <?php include '../layout/header.php'; ?>
 
         <main class="main-content">
             <!-- Checks to see if the user is a guest first -->
@@ -136,8 +133,6 @@ if ($currentUsername && !$isGuest) {
             <?php endif; ?>
         </main>
 
-        <footer>
-            <?php include '../layout/footer.php'; ?>
-        </footer>
+        <?php include '../layout/footer.php'; ?>
     </body>
 </html>

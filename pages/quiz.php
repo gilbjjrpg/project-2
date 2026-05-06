@@ -16,10 +16,8 @@
     </head>
 
     <body>
-        <header>
-            <!-- Shared site navigation. -->
-            <?php include '../layout/header.php' ?>
-        </header>
+        <!-- Shared site navigation. -->
+        <?php include '../layout/header.php' ?>
 
         <main class="main-content">
             <div>
@@ -43,10 +41,8 @@
 
         </main>
 
-        <footer>
-            <!-- Shared site footer. -->
-            <?php include '../layout/footer.php' ?>
-        </footer>
+        <!-- Shared site footer. -->
+        <?php include '../layout/footer.php' ?>
 
     </body>
 

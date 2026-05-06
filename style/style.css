@@ -35,15 +35,21 @@ header{
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 14px 24px;
 }
 
 header h1 {
     /* For header font */
     margin: 0;
-    font-size: 55px;
+    font-size: clamp(38px, 7vw, 55px);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
     text-shadow: 3px 3px 1px black;
+}
+
+nav {
+  flex: 1 1 520px;
 }
 
 nav ul {
@@ -53,14 +59,18 @@ nav ul {
   margin: 0;
   padding: 0;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 nav li a {
     /*Styling for buttons.*/
     display: block;
-    padding: 15px 25px;
+    padding: 15px clamp(16px, 2vw, 25px);
     font-weight: bold;
     text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
 
     background-color: rgb(255, 238, 139);
     border-radius: 30px 10px;
@@ -82,6 +92,28 @@ nav li.selected a {
     box-shadow: none;
     pointer-events: none;
     cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .header-container {
+    justify-content: center;
+  }
+
+  nav {
+    flex-basis: 100%;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+
+  nav li {
+    flex: 1 1 145px;
+  }
+
+  nav li a {
+    width: 100%;
+  }
 }
     
 * {
@@ -191,6 +223,11 @@ input:focus {
   font-size: 1rem;
   cursor: pointer;
   margin-bottom: 10px;
+}
+
+.primary-btn {
+  background: #450589;
+  color: white;
 }
 
 .primary-btn:hover {

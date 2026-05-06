@@ -16,10 +16,8 @@
 
     <body>
 
-    <header>
     <!-- Shared site navigation. -->
     <?php include '../layout/header.php' ?>
-    </header>
 
     <main>
         <h1>Customize your Quiz!</h1>
@@ -52,10 +50,8 @@
         </form>
     </main>
 
-    <footer>
         <!-- Shared site footer. -->
         <?php include '../layout/footer.php' ?>
-    </footer>
 
     </body>
 
