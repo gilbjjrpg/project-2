@@ -203,9 +203,10 @@ main {
 }
 
 #questionRange {
-  padding: 10px;
+  display: flex;
+  margin-bottom: 10px;
   width: 100%;
-  max-width: 200px;
+  max-width: 350px;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
@@ -213,7 +214,8 @@ main {
 }
 
 #startCustomQuizBtn {
-  padding: 10px;
+  display: flex;
+  margin-bottom: 10px;
   width: 100%;
   max-width: 350px;
   justify-content: center;
