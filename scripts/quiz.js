@@ -504,6 +504,14 @@ function showFinalScore() {
     //Save the score to the SQL database
     saveQuizScore(scorePercent);
 
+    /*
+    Conditional that checks & changes the button and links. 
+    If the test is 10-Question -> leaderboard
+    If the test is custom -> scores
+    */
+    const resultLinkHref = quizConfig && quizConfig.countsForLeaderboard ? "leaderboard.php" : "scores.php";
+    const resultLinkText = quizConfig && quizConfig.countsForLeaderboard ? "Go to Leaderboard" : "Go to Scores";
+
     //replace the quiz area with the final results message
     quizContainer.innerHTML =
         "<div style='background:white; color:black; padding:30px; border-radius:12px; margin:40px;'>" +
@@ -512,6 +520,6 @@ function showFinalScore() {
         "<p>Your score: " + scorePercent + "%</p>" +
         "<p>Total time: " + formatTime(totalTime) + "</p>" +
         "<a href='quiz.php' class='primary-btn result-btn'>Return Home</a>" +
-        "<a href='leaderboard.php' class='primary-bt result-btn'>Go to Leaderboard</a>" +
+        "<a href='" + resultLinkHref + "' class='primary-btn result-btn'>" + resultLinkText + "</a>" +
         "</div>";
 }
