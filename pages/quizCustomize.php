@@ -31,7 +31,7 @@
             <input type="number" id="questionCount" min="5" max="50" value="10">
 
             <!-- Controls how many seconds the user gets on each question. -->
-            <label for="timePerQuestion">Time per questions (in seconds)</label>
+            <label for="timePerQuestion">Time per question (in seconds)</label>
             <input type="number" id="timePerQuestion" min="30" max="300" value="60"> 
 
             <!-- Controls which section of questions.json the quiz pulls from. -->

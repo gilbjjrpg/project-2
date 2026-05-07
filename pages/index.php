@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $existingEmail = $emailCheck->fetch(PDO::FETCH_ASSOC);
 
       if ($existingUsername) {
-        $errorMessage = "That usernaeme is already taken!";
+        $errorMessage = "That username is already taken!";
       } elseif ($existingEmail) {
         $errorMessage = "The email is already in use!";
       } else {
@@ -204,7 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <label for="signupPassword">Password</label>
                 <input type="password" id="signupPassword" name="signupPassword" placeholder="Create a password.">
 
-                <label for="confirmPassword">Confrim Password</label>
+                <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password.">
 
                 <button type="submit" class="primary-btn">Sign Up</button>
