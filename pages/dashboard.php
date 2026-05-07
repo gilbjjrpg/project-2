@@ -101,7 +101,7 @@ if ($currentUsername && !$isGuest) {
 
                 <!-- If the user has any saved quiz scores, show them in a table -->
                 <?php if (count($playHistory) > 0): ?>
-                    <table border="1">
+                    <table>
                         <tr>
                             <th>Quiz Type</th>
                             <th>Score</th>
