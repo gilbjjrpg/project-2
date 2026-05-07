@@ -7,14 +7,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../style/style.css?v=3">
+        <link rel="stylesheet" href="../style/style.css?v=4">
         <script src="../scripts/quiz.js" defer></script>
         <title>Quiz time! - Quizberry!</title>
     </head>
 
     <body>
 
-        <main>
+        <main class="quiz-page">
             <div id="quizContainer">
                 <!-- JavaScript updates this with the current question number. -->
                 <p id="quizProgress"></p>
