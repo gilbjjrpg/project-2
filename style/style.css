@@ -314,11 +314,12 @@ input:focus {
   gap: 18px;
   flex-wrap: wrap;
   margin-top: 18px;
+  margin-bottom: 18px;
 }
 
 .quiz-option-btn {
-  min-width: 145px;
-  min-height: 52px;
+  min-width: 200px;
+  min-height: 65px;
   font-weight: bold;
   box-shadow: 6px 6px 6px rgb(135, 135, 135);
   background: #450589;
