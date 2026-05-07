@@ -90,7 +90,7 @@ if ($currentUsername && !$isGuest) {
             <?php elseif ($currentUser): ?>
 
                 <?php if (count($userScores) > 0): ?>
-                    <table border="1">
+                    <table>
                         <tr>
                             <th>Quiz Type</th>
                             <th>Score</th>

@@ -129,6 +129,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 main {
@@ -161,7 +162,7 @@ main {
 
 .main-content table {
   border-collapse: collapse;
-  margin: 100%;
+  margin: 24px auto;
   max-width: 800px;
   margin-top: 24px;
   text-align: center;
