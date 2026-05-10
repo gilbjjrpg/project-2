@@ -71,7 +71,7 @@ if ($currentUsername && !$isGuest) {
 <html lang="en">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../style/style.css?v=3">
+        <link rel="stylesheet" href="../style/style.css?v=5">
         <title>Scores — Quizberry!</title>
     </head>
 
