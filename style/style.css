@@ -480,11 +480,11 @@ input:focus {
 .site-footer{
   /* Styles the shared footer band at the bottom of pages. */
     margin-top: auto;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: 100%;
+    margin-left: 0;
     box-sizing: border-box;
 
-    border: 3px solid #921cfa;
+    border: none;
     border-radius: 0 0 0px 0px;
     background-color: #921cfa;
     color: rgb(255, 247, 0);
