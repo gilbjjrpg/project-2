@@ -43,7 +43,7 @@
                 <option value="200-299">200 - 299 range.</option>
                 <option value="300-399">300 - 399 range.</option>
                 <option value="400-499">400 - 499 range.</option>
-                <option value="500-599">500 - 599 range.</option>
+                <option value="500-546">500 - 546 range.</option>
             </select>
 
             <button type="submit" id="startCustomQuizBtn">Start Custom Quiz</button>
