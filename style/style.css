@@ -1,8 +1,11 @@
+
 :root {
+/* Stores the main purple color so it can be reused across the site. */
     --bg-color: #921cfa;
 }
 
 html, body {
+  /* Sets the base page background and removes default browser spacing. */
     background: var(--bg-color);
     margin: 0;
     padding: 0;
@@ -10,9 +13,8 @@ html, body {
     min-height: 100%;
 }
 
-
 header{
-    /* For the ENTIRE header. This includes elements of header h1 and nav ul & li*/
+  /* Styles the shared header band used at the top of app pages. */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -28,6 +30,7 @@ header{
 }
 
 .header-container {
+  /* Keeps the logo and navigation inside the header. */
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
@@ -40,7 +43,7 @@ header{
 }
 
 header h1 {
-    /* For header font */
+  /* Styles the Quizberry title in the header. */
     margin: 0;
     font-size: clamp(38px, 7vw, 55px);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -50,12 +53,13 @@ header h1 {
 }
 
 nav {
+  /* Lets the navigation area shrink and wrap without forcing horizontal scroll. */
   flex: 1 1 360px;
   min-width: 0;
 }
 
 nav ul{
-    /* Formats the button elements to be aligned horizontally and spaced*/
+  /* Formats the navigation list so the buttons sit in a row and wrap on smaller windows. */
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -68,11 +72,12 @@ nav ul{
 }
 
 nav li {
+  /* Keeps each navigation item at its natural button size. */
   flex: 0 0 auto;
 }
 
 nav li a {
-    /*Styling for buttons.*/
+  /* Styling rules for the buttons. */
     display: block;
     padding: 15px 25px;
     font-weight: bold;
@@ -87,7 +92,7 @@ nav li a {
 }
 
 nav li a:hover {
-    /* Button animation for when the cursor hovers above one */
+  /* Styling rules for the buttons that enlarges them when the cursor hovers above them. */
     transform: scale(1.05);
     color: rgb(255, 247, 0);  
     cursor: pointer;
@@ -95,7 +100,7 @@ nav li a:hover {
 }
 
 nav li.selected a {
-    /* Makes it so that the selected button could not be clicked again.*/
+  /* Disabled the button associated with the page the user is currently on. */
     background: radial-gradient(#a29eff, #8d92ff);
     box-shadow: none;
     pointer-events: none;
@@ -103,25 +108,32 @@ nav li.selected a {
 }
 
 @media (max-width: 700px) {
+  /* Adjusts the header layout for smaller screens. */
+
+  /* Centers the header contents on smaller screens. */
   .header-container {
     justify-content: center;
   }
 
+  /* Lets the navigation wrap to under the title. */
   nav {
     flex-basis: 100%;
   }
 
+  /* Keeps wrapped navigation buttons centered. */
   nav ul {
     justify-content: center;
   }
 
 }
     
+/* Makes padding and borders count inside element width calculations. */
 * {
   box-sizing: border-box;
 }
 
 body {
+  /* Sets the main site font and forces the footer able to sit at the bottom. */
   margin: 0;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
   background: #ffffff;
@@ -133,10 +145,12 @@ body {
 }
 
 main {
+  /* Lets page content grow between the header and footer to keep the distance. */
   flex: 1;
 }
 
 .quiz-page {
+  /* Centers the quiz and gives the quiz page a purple background. */
   background: #921cfa;
   display: flex;
   justify-content: center;
@@ -145,6 +159,7 @@ main {
 }
 
 .main-content {
+  /* Centers the main content area used by dashboard, scores, leaderboard, and quiz menu pages. */
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
@@ -156,6 +171,7 @@ main {
 }
 
 .main-content h1 {
+  /* Styles main page headings inside the shared content container. */
   font-size: 55px;
   padding: 5px 20px;
   margin-bottom: 8px;
@@ -163,12 +179,14 @@ main {
 }
 
 .main-content h2 {
+  /* Styles secondary headings inside the shared content container. */
   font-size: 25px;
   margin-top: 0px;
   text-shadow: 3px 3px 1px rgb(180, 180, 180);
 }
 
 .main-content table {
+  /* Gives score and leaderboard tables cleaner spacing and collapsed borders. */
   border-collapse: collapse;
   margin: 24px auto;
   max-width: 800px;
@@ -178,21 +196,25 @@ main {
 
 .main-content th,
 .main-content td {
+  /* Adds padding and borders to each table cell. */
   padding: 12px 16px;
   border: 1px solid #ccc;
   text-align: center;
 }
 
 .main-content th {
+  /* Styles table header cells with the main purple color. */
   background: #450589;
   color: white;
 }
 
 .main-content tr:nth-child(even) {
+  /* Adds alternating row color for easier table reading. */
   background: #f3edff;
 }
 
 .login-page-wrapper {
+  /* Centers the login card on the purple login page. */
   min-height: 100vh;
   background: #921cfa;
   display: flex;
@@ -202,6 +224,7 @@ main {
 }
 
 .login-card {
+  /* Styles the white login/signup card. */
   width: 100%;
   max-width: 420px;
   background: white;
@@ -211,19 +234,22 @@ main {
 }
 
 .login-card h1 {
+  /* Styles the Quizberry title on the login card. */
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 50px;
   text-align: center;
 }
 
-.subtitle {
+.login-subtitle {
+  /* Styles the smaller subtitle text on the login page. */
   text-align: center;
   margin-bottom: 25px;
   color: #666;
 }
 
-#customize-container {
+.customize-container {
+  /* Arranges the custom quiz page contents vertically. */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,6 +257,7 @@ main {
 }
 
 #questionRange {
+  /* Styles the custom quiz question range dropdown. */
   display: flex;
   margin-bottom: 10px;
   width: 100%;
@@ -242,6 +269,7 @@ main {
 }
 
 #startCustomQuizBtn {
+  /* Styles the custom quiz start button. */
   display: flex;
   width: 100%;
   max-width: 350px;
@@ -251,23 +279,22 @@ main {
   gap: 10px;
 }
 
-.questionText {
-  display: flex;
-  flex-wrap: wrap;
-
-}
-
-form {
+#loginForm,
+#signupForm,
+#customQuizForm {
+  /* Stacks the fields in the login, signup, and custom quiz forms. */
   display: flex;
   flex-direction: column;
 }
 
 label {
+  /* Styles text labels that appear above form controls. */
   margin-bottom: 6px;
   font-weight: bold;
 }
 
 input {
+  /* Styles text, password, email, and number inputs. */
   padding: 10px;
   margin-bottom: 16px;
   border: 1px solid #bbb;
@@ -276,17 +303,20 @@ input {
 }
 
 input:focus {
+  /* Highlights form inputs when the user clicks into them. */
   outline: none;
   border-color: #310363;
 }
 
 .login-btn {
+  /* Gives the login button its purple background. */
   background: #450589;
   color: white;
 }
 
 .primary-btn,
 .secondary-btn {
+  /* Sets the shared shape and spacing for primary and secondary form buttons. */
   padding: 12px;
   border: none;
   border-radius: 6px;
@@ -297,25 +327,30 @@ input:focus {
 
 .primary-btn,
 .login-card button.primary-btn {
+  /* Styles primary action buttons, including login/signup/result buttons. */
   background-color: #450589;
   color: white;
 }
 
 .primary-btn:hover,
 .login-card button.primary-btn:hover {
+  /* Darkens primary buttons on hover. */
   background-color: #310363;
 }
 
 .secondary-btn {
+  /* Styles secondary form buttons with a light gray background. */
   background: #e5e8f0;
   color: #222;
 }
 
 .secondary-btn:hover {
+  /* Darkens secondary form buttons on hover. */
   background: #d8dce8;
 }
 
 .quiz-option-buttons {
+  /* Styling rules out the 10-question and custom quiz option buttons. */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -326,6 +361,7 @@ input:focus {
 }
 
 .quiz-option-btn {
+  /* Styling rules that makes the quiz option links as large purple buttons. */
   min-width: 200px;
   min-height: 65px;
   font-weight: bold;
@@ -339,6 +375,7 @@ input:focus {
 }
 
 .result-btn {
+  /* Centers result page links after a quiz is completed. */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -346,6 +383,7 @@ input:focus {
 }
 
 .error-message {
+  /* Styling rules for login and signup error messages. */
   background: #ffe3e3;
   color: #b00020;
   padding: 10px;
@@ -355,26 +393,12 @@ input:focus {
 }
 
 .hidden {
+  /* Hides elements such as the inactive signup/login form. */
   display: none;
 }
 
-.demo-accounts {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid #ddd;
-}
-
-.demo-accounts h2 {
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-.demo-accounts p {
-  margin: 6px 0;
-  font-size: 0.95rem;
-}
-
 #quizContainer {
+  /* Styling rules used for the live quiz page. */
   display: flex;
   color: black;
   justify-content: center;
@@ -391,6 +415,7 @@ input:focus {
 }
 
 #answerContainer {
+  /* Places the four answer buttons into a two-column grid. */
   display: grid;
   grid-template-columns: 200px 200px;
   flex-wrap: wrap;
@@ -401,17 +426,20 @@ input:focus {
 }
 
 #quizProgress, #quizTimer{
+  /* Styling rules for the quiz progress and timer text. */
   margin-bottom: 12px;
   font-weight: bold;
 }
 
 #questionText {
+  /* Styling rules that centers the current quiz question text. */
   color: black;
   margin-bottom: 20px;
   text-align: center;
 }
 
 .answer-btn {
+  /* Styling rules for each answer choice button. */
   padding: 12px;
   border: none;
   border-radius: 6px;
@@ -421,11 +449,13 @@ input:focus {
 }
 
 .answer-btn:hover {
+  /* Changes an answer button when hovered. */
   background: #bf99da;
   border: 0px solid transparent;
 }
 
 .answer-btn.selected {
+  /* Shows which answer button the user selected. */
   background: #61009a;
   color: rgb(220, 220, 220);
   font-weight: bold;
@@ -433,6 +463,7 @@ input:focus {
 }
 
 #nextBtn {
+  /* Styles the Next button on the live quiz page. */
   padding: 12px;
   border: none;
   border-radius: 6px;
@@ -442,11 +473,12 @@ input:focus {
 }
 
 #nextBtn:hover {
+  /* Darkens the Next button on hover. */
   background: #310363;
 }
 
 .site-footer{
-    /* Shared footer band that sits at the bottom of the page. */
+  /* Styles the shared footer band at the bottom of pages. */
     margin-top: auto;
     width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -463,7 +495,7 @@ input:focus {
 }
 
 .footer-inner{
-    /* Width, margin and spacing rules for the footer content. */
+  /* Stacks and centers the footer contents. */
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
@@ -473,6 +505,7 @@ input:focus {
 }
 
 .footer-socials {
+  /* Groups the social text and social icons in the footer. */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -481,16 +514,19 @@ input:focus {
 
 .footer-socials p,
 .footer-copyright {
+  /* Gives footer text bold styling and a shadow. */
     margin: 0;
     font-weight: bold;
     text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.45);
 }
 
 .footer-socials p {
+  /* Sets the size of the footer social heading. */
     font-size: 1.6rem;
 }
 
 .footer-icons {
+  /* Lays out the footer social media icons in a row. */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -502,6 +538,7 @@ input:focus {
 }
 
 .footer-icons img {
+  /* Keeps footer social images consistently sized. */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -511,9 +548,6 @@ input:focus {
 }
 
 .footer-copyright {
+  /* Sets the copyright text size. */
     font-size: 1.2rem;
 }
-
-/*
-Help
-*/

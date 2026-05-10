@@ -70,6 +70,7 @@ function setupLoginPage() {
       errorMessage.textContent = "";
       errorMessage.classList.add("hidden");
 
+      //If any of these fields are empty, show an error
       if (
       signupName === "" ||
       signupUsername === "" ||
@@ -82,6 +83,7 @@ function setupLoginPage() {
         return;
       }
 
+      //If the signup password is not the same as confirm password, show an error
       if(signupPassword !== confirmPassword) {
         event.preventDefault();
         showError("Passwords do not match!");
@@ -91,13 +93,6 @@ function setupLoginPage() {
     // Handle guest login button
     if (guestBtn) {
         guestBtn.addEventListener("click", function () {
-
-            // Store a guest user object in sessionStorage for browser-side code.
-            sessionStorage.setItem("currentUser", JSON.stringify({
-            username: "Guest",
-            name: "Guest",
-            isGuest: true
-            }));
 
             // Redirect guest users to the dashboard page
             window.location.href = "guest_login.php";

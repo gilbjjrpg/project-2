@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="login-page-wrapper">
         <div class="login-card">
             <h1>Quizberry!</h1>
-            <h2 class="subtitle">Login, sign up, or continue as a guest.</h2>
+            <h2 class="login-subtitle">Login, sign up, or continue as a guest.</h2>
 
             <!-- Shared message area -->
             <div id="errorMessage" class="error-message <?php echo ($errorMessage || $successMessage) ? '' : 'hidden'; ?>">

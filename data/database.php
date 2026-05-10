@@ -41,6 +41,7 @@ try {
     //Run the database setup/checking function.
     initializeDatabase($db, $dbDriver);
 } catch (PDOException $error) {
+    
     //If the database cannot connect or initialize, stop and show the error.
     die("Database connection failed: " . $error->getMessage());
 }
