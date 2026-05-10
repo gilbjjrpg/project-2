@@ -76,55 +76,38 @@ You should maintain and submit a README.md file. In this file you should include
 		3. Download the project files.
 			!! IMPORTANT: If the project is downloaded as a ZIP file, extract/unzip it FIRST. !!
 
-			On Windows:
-				4. Open Command Prompt or Powershell.
-				5. Move into the project folder. For example:
-					cd "C:\Users\YourName\Downloads\project 2"
+		4. Open Terminal, Command Prompt or Powershell.
+		5. Move into the project folder.
 
-				6. Confirm that the Dockerfile is there. Type:
-						dir
+			i. On Windows, type:
+				cd "C:\Users\YourName\Downloads\project 2"
 
-					After this, you should see:
+			ii. On Mac, type:
+				cd "/Users/YourName/Downloads/project 2"
 
-					Dockerfile
-					pages
-					data
-					scripts
-					style
+		6. Confirm that the Dockerfile is there. 
+			i. On Windows, type:
+					dir
 
-				7. Build the Docker image. Type:
-					docker build -t quizberry .
+			ii. On Mac, type:
+					ls
 
-				8. Run the container. Type:
-					docker run -p 8080:80 quizberry
+				After this, you should see:
 
-				9. Finally, open this in your browser:
-					http://localhost:8080
+				Dockerfile
+				pages
+				data
+				scripts
+				style
 
-			On Mac:
-				4. Open the terminal. (Command + Spacebar, then type terminal, then hit Enter).
-				5. Move into project folder. For example:
-					cd "/Users/YourName/Downloads/project 2"
+		7. Build the Docker image. Type:
+			docker build -t quizberry .
 
-				6. Confirm that the Dockerfile is in there. Type:
-						ls
+		8. Run the container. Type:
+			docker run -p 8080:80 quizberry
 
-					After this, you should see:
-
-					Dockerfile
-					pages
-					data
-					scripts
-					style
-
-				7. Build the Docker image. Type:
-					docker build -t quizberry .
-
-				8. Run the container. Type: 
-					docker run -p 8080:80 quizberry
-
-				9. Finally, open this in your browser:
-					http://localhost:8080
+		9. Finally, open this in your browser:
+			http://localhost:8080
 
 
 	3. the URL of the deployed website:
