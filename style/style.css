@@ -394,7 +394,7 @@ input:focus {
 
 .hidden {
   /* Hides elements such as the inactive signup/login form. */
-  display: none;
+  display: none !important;
 }
 
 #quizContainer {
