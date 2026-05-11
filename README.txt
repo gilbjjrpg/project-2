@@ -10,6 +10,14 @@ You should maintain and submit a README.md file. In this file you should include
 	(like zybooks or stack overflow) to formulate a lot of quiz.js. There was probably an easier way I could've gone
 	about making it, but seeing as it works, I decided to leave it as is. I didn't need nearly as much help with login.js.
 
+	The inclusion of Docker, although strange, was something I had to do research on in order for the website to deploy
+	on Render.
+
+	Docker makes deployments predictable and consistent. The project heavily relies on PHP and database extensions
+	so Docker ensures that those some requirements are installed the same way every time the app runs, making 
+	deployments more reliable because it reduces the chance that the website works on one computer but fails
+	on Render because of missing PHP extensions. Basically, it's the instructions sent to Render for deployment.
+
 	2. how to run the server:
 	A: You can run the server by either using PHP or Docker.
 		NOTICE: You must have SQLite enabled on PHP to run this locally. Docker is recommended if
@@ -115,7 +123,8 @@ You should maintain and submit a README.md file. In this file you should include
 	The website should force start on the login page first.
 
 	4. the database schema. 
-	A: All wireframes and the schema are available in their own folder in thie project.
+	A: All wireframes and the schema are available in their own folder in thie project. I didn't get to make them
+	   look as I wanted them to look due to time constraints and there being other projects I had to work on.
 
 Use of ChatGPT, Google, Stack Overflow are allowed, however you should possess full knowledge of the code and how it works. Otherwise, a lower/failing grade will be given.
 
