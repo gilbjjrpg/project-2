@@ -7,7 +7,7 @@ try {
     $dbDriver = (getenv("DB_HOST") || getenv("MYSQL_HOST")) ? "mysql" : "sqlite";
 
     if ($dbDriver === "mysql") {
-        //These values should be set in Render's Environment Variables.
+        //These values are set in Render's Environment Variables.
         $dbHost = getenv("DB_HOST") ?: getenv("MYSQL_HOST");
         $dbPort = getenv("DB_PORT") ?: getenv("MYSQL_PORT") ?: "3306";
         $dbName = getenv("DB_NAME") ?: getenv("MYSQL_DATABASE") ?: "quizberry";
@@ -41,7 +41,7 @@ try {
     //Run the database setup/checking function.
     initializeDatabase($db, $dbDriver);
 } catch (PDOException $error) {
-    
+
     //If the database cannot connect or initialize, stop and show the error.
     die("Database connection failed: " . $error->getMessage());
 }

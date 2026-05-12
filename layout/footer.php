@@ -4,7 +4,7 @@
 
 ?>
 
-<footer class="site-footer">
+<footer class="footer">
   <div class="footer-inner">
 
     <!-- Placeholder area for social text/icons that can be filled in later. -->

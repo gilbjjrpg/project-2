@@ -18,6 +18,11 @@ You should maintain and submit a README.md file. In this file you should include
 	deployments more reliable because it reduces the chance that the website works on one computer but fails
 	on Render because of missing PHP extensions. Basically, it's the instructions sent to Render for deployment.
 
+	Although the inclusion of SQLite may be strange, it is included for if Render can't locate any of the preset environment
+	varibles I had set. When they aren't found, the app falls back on to a SQLite database at data/quizberry.db locally. This
+	was mostly used for development and testing. The app on Render runs off of MySQL. Setting this up was arguably the hardest
+	part, haha...
+
 	2. how to run the server:
 	A: You can run the server by either using PHP or Docker.
 		NOTICE: You must have SQLite enabled on PHP to run this locally. Docker is recommended if
@@ -87,11 +92,11 @@ You should maintain and submit a README.md file. In this file you should include
 		4. Open Terminal, Command Prompt or Powershell.
 		5. Move into the project folder.
 
-			i. On Windows, type:
-				cd "C:\Users\YourName\Downloads\project 2"
-
-			ii. On Mac, type:
+			i. On Mac, type:
 				cd "/Users/YourName/Downloads/project 2"
+
+			ii. On Windows, type:
+				cd "C:\Users\YourName\Downloads\project 2"
 
 		6. Confirm that the Dockerfile is there. 
 			i. On Windows, type:
