@@ -128,7 +128,7 @@ You should maintain and submit a README.md file. In this file you should include
 	The website should force start on the login page first.
 
 	4. the database schema. 
-	A: All wireframes and the schema are available in their own folder in thie project. I didn't get to make them
+	A: All wireframes and the schema are available in their own folder in the project. I didn't get to make them
 	   look as I wanted them to look due to time constraints and there being other projects I had to work on.
 
 Use of ChatGPT, Google, Stack Overflow are allowed, however you should possess full knowledge of the code and how it works. Otherwise, a lower/failing grade will be given.
