@@ -37,90 +37,90 @@ You should maintain and submit a README.md file. In this file you should include
 		https://www.php.net/manual/en/ref.pdo-sqlite.php
 
 		- If you have PHP installed:
-		1. Download the project files.
-			!! IMPORTANT: If the project is downloaded as a ZIP file, extract/unzip it FIRST. !!
+			1. Download the project files.
+				!! IMPORTANT: If the project is downloaded as a ZIP file, extract/unzip it FIRST. !!
 
-		2. Open Terminal, Command Prompt, or Powershell.
+			2. Open Terminal, Command Prompt, or Powershell.
 
-		3. Move into the project folder.
+			3. Move into the project folder.
 
-			i. On Mac, type:
-				cd "/Users/YourName/Downloads/project 2"
+				i. On Mac, type:
+					cd "/Users/YourName/Downloads/project 2"
 
-			ii. On Windows, type:
-				cd "C:\Users\YourName\Downloads\project 2"
+				ii. On Windows, type:
+					cd "C:\Users\YourName\Downloads\project 2"
 
-		4. Confirm that you are inside the correct folder.
+			4. Confirm that you are inside the correct folder.
 
-			i. On Mac, type:
-				ls
-
-			ii. On Windows, type:
-				dir
-
-			You should see:
-
-			index.php
-   			pages
-  			data
-   			scripts
-   			style
-
-		5. Start PHP's built-in server. Type:
-			php -S localhost:8000
-
-		6. Open this in your browser:
-			http://localhost:8000
-
-		NOTE: When running locally, the app uses the local SQLite database file at quizberry.db unless
-			  MySQL environment variables are set.
-
-			  If PHP gives a PDO/SQLite error, use the Docker instructions instead. Docker already includes 
-			  the required database extensions.
-
-		If by any chance you get:
-			php: command not found
-			zsh: command not found: php
-		then that means PHP is not installed or available in your terminal.
-
-		- For Docker:
-		1. Install Docker Desktop: https://www.docker.com/products/docker-desktop/
-		2. Open Docker Desktop and wait until it says Docker is running.
-		3. Download the project files.
-			!! IMPORTANT: If the project is downloaded as a ZIP file, extract/unzip it FIRST. !!
-
-		4. Open Terminal, Command Prompt or Powershell.
-		5. Move into the project folder.
-
-			i. On Mac, type:
-				cd "/Users/YourName/Downloads/project 2"
-
-			ii. On Windows, type:
-				cd "C:\Users\YourName\Downloads\project 2"
-
-		6. Confirm that the Dockerfile is there. 
-			i. On Windows, type:
-					dir
-
-			ii. On Mac, type:
+				i. On Mac, type:
 					ls
 
-				After this, you should see:
+				ii. On Windows, type:
+					dir
 
-				Dockerfile
-				pages
-				data
-				scripts
-				style
+				You should see:
 
-		7. Build the Docker image. Type:
-			docker build -t quizberry .
+				index.php
+   				pages
+  				data
+   				scripts
+   				style
 
-		8. Run the container. Type:
-			docker run -p 8080:80 quizberry
+			5. Start PHP's built-in server. Type:
+				php -S localhost:8000
 
-		9. Finally, open this in your browser:
-			http://localhost:8080
+			6. Open this in your browser:
+				http://localhost:8000
+
+			NOTE: When running locally, the app uses the local SQLite database file at quizberry.db unless
+			  	MySQL environment variables are set.
+
+			  	If PHP gives a PDO/SQLite error, use the Docker instructions instead. Docker already includes 
+			  	the required database extensions.
+
+			If by any chance you get:
+				php: command not found
+				zsh: command not found: php
+			then that means PHP is not installed or available in your terminal.
+
+		- For Docker:
+			1. Install Docker Desktop: https://www.docker.com/products/docker-desktop/
+			2. Open Docker Desktop and wait until it says Docker is running.
+			3. Download the project files.
+				!! IMPORTANT: If the project is downloaded as a ZIP file, extract/unzip it FIRST. !!
+
+			4. Open Terminal, Command Prompt or Powershell.
+			5. Move into the project folder.
+
+				i. On Mac, type:
+					cd "/Users/YourName/Downloads/project 2"
+
+				ii. On Windows, type:
+					cd "C:\Users\YourName\Downloads\project 2"
+
+			6. Confirm that the Dockerfile is there. 
+				i. On Windows, type:
+						dir
+
+				ii. On Mac, type:
+						ls
+
+					After this, you should see:
+
+					Dockerfile
+					pages
+					data
+					scripts
+					style
+
+			7. Build the Docker image. Type:
+				docker build -t quizberry .
+
+			8. Run the container. Type:
+				docker run -p 8080:80 quizberry
+
+			9. Finally, open this in your browser:
+				http://localhost:8080
 
 
 	3. the URL of the deployed website:
